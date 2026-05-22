@@ -1,0 +1,20 @@
+category_id,parent_id,name,slug
+CAT-100,,Fire Extinguishers,fire-extinguishers
+CAT-110,CAT-100,ABC Dry Powder,abc-dry-powder
+CAT-111,CAT-100,CO2,co2-extinguishers
+CAT-112,CAT-100,Clean Agent (FK-5-1-12),clean-agent
+CAT-200,,Fire Detection & Alarm,fire-detection-alarm
+CAT-210,CAT-200,Panels & Repeaters,panels-repeaters
+CAT-211,CAT-200,Detectors & Bases,detectors-bases
+CAT-212,CAT-200,Manual Call Points,manual-call-points
+CAT-213,CAT-200,Sounders & Strobes,sounders-strobes
+CAT-300,,Sprinkler & Hydrant,sprinkler-hydrant
+CAT-310,CAT-300,Sprinkler Heads & Spares,sprinkler-heads
+CAT-311,CAT-300,Valves (Alarm/PRV/NRV),sprinkler-valves
+CAT-312,CAT-300,Hydrant Valves & Hoses,hydrant-valves-hoses
+CAT-400,,Emergency Lighting & Signage,emergency-lighting-signage
+CAT-500,,PPE & Rescue,ppe-rescue
+CAT-600,,Services,services
+CAT-610,CAT-600,Training & Certification,training-certification
+CAT-611,CAT-600,Audits & Risk Assessment,audits-risk-assessment
+CAT-612,CAT-600,Installation & AMC,installation-amc

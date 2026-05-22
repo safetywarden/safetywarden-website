@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SafetyWarden Blog</title>
+    <link>https://safetywarden.com/blog</link>
+    <description>Practical insights on safety compliance, audits, and inspection readiness.</description>
+    <language>en</language>
+    <copyright>© SafetyWarden</copyright>
+    <managingEditor>hello@safetywarden.com (SafetyWarden Team)</managingEditor>
+    <webMaster>hello@safetywarden.com (SafetyWarden Team)</webMaster>
+    <lastBuildDate>Wed, 15 Jan 2025 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://safetywarden.com/rss.xml" rel="self" type="application/rss+xml" />
+    <image>
+      <url>https://safetywarden.com/icon.png</url>
+      <title>SafetyWarden Blog</title>
+      <link>https://safetywarden.com/blog</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
+    <item>
+      <title>Factories Act Compliance in 2026: What Inspectors Look for (and How to Stay Ready)</title>
+      <link>https://safetywarden.com/blog/factories-act-compliance-2026-inspection-readiness</link>
+      <guid isPermaLink="true">https://safetywarden.com/blog/factories-act-compliance-2026-inspection-readiness</guid>
+      <pubDate>Wed, 15 Jan 2025 00:00:00 GMT</pubDate>
+      <author>hello@safetywarden.com (SafetyWarden Team)</author>
+      <category>Compliance</category>
+      <description><![CDATA[Factory inspections are becoming more rigorous. Learn exactly what inspectors check and how to maintain continuous compliance under the Factories Act 1948.]]></description>
+    </item>
+    <item>
+      <title>ISO 45001 Internal Audits: A Practical Field Guide for EHS Teams</title>
+      <link>https://safetywarden.com/blog/iso-45001-internal-audit-field-guide</link>
+      <guid isPermaLink="true">https://safetywarden.com/blog/iso-45001-internal-audit-field-guide</guid>
+      <pubDate>Sun, 12 Jan 2025 00:00:00 GMT</pubDate>
+      <author>hello@safetywarden.com (SafetyWarden Team)</author>
+      <category>ISO 45001</category>
+      <description><![CDATA[Move beyond checkbox audits. Learn how to conduct effective ISO 45001 internal audits that drive real safety improvements and prepare you for certification.]]></description>
+    </item>
+    <item>
+      <title>Fire Safety Audits for Factories: The Evidence Inspectors Expect on Site</title>
+      <link>https://safetywarden.com/blog/fire-safety-audit-evidence-inspectors-expect</link>
+      <guid isPermaLink="true">https://safetywarden.com/blog/fire-safety-audit-evidence-inspectors-expect</guid>
+      <pubDate>Fri, 10 Jan 2025 00:00:00 GMT</pubDate>
+      <author>hello@safetywarden.com (SafetyWarden Team)</author>
+      <category>Fire Safety</category>
+      <description><![CDATA[Fire safety audits go beyond checking if extinguishers exist. Learn what documented evidence fire inspectors demand and how to maintain bulletproof compliance.]]></description>
+    </item>
+    <item>
+      <title>Corrective Actions That Actually Close: Fixing the #1 Failure in Safety Audits</title>
+      <link>https://safetywarden.com/blog/corrective-action-closure-safety-audits</link>
+      <guid isPermaLink="true">https://safetywarden.com/blog/corrective-action-closure-safety-audits</guid>
+      <pubDate>Wed, 08 Jan 2025 00:00:00 GMT</pubDate>
+      <author>hello@safetywarden.com (SafetyWarden Team)</author>
+      <category>Audits</category>
+      <description><![CDATA[Open corrective actions are the silent killer of safety programs. Learn the proven CAPA framework that achieves 95%+ closure rates and prevents recurring incidents.]]></description>
+    </item>
+    <item>
+      <title>Contractor Safety Management: Preventing Incidents with Daily Digital Checks</title>
+      <link>https://safetywarden.com/blog/contractor-safety-management-daily-digital-checks</link>
+      <guid isPermaLink="true">https://safetywarden.com/blog/contractor-safety-management-daily-digital-checks</guid>
+      <pubDate>Mon, 06 Jan 2025 00:00:00 GMT</pubDate>
+      <author>hello@safetywarden.com (SafetyWarden Team)</author>
+      <category>Contractor Safety</category>
+      <description><![CDATA[Contractor incidents account for 40% of workplace fatalities. Learn how daily digital checks and permit-to-work systems prevent contractor safety failures.]]></description>
+    </item>
+    <item>
+      <title>Permit to Work Systems: What &quot;Good&quot; Looks Like in High-Risk Jobs</title>
+      <link>https://safetywarden.com/blog/permit-to-work-system-best-practices</link>
+      <guid isPermaLink="true">https://safetywarden.com/blog/permit-to-work-system-best-practices</guid>
+      <pubDate>Sat, 04 Jan 2025 00:00:00 GMT</pubDate>
+      <author>hello@safetywarden.com (SafetyWarden Team)</author>
+      <category>Operations Safety</category>
+      <description><![CDATA[Permit-to-work systems prevent fatalities in high-risk operations. Learn the 7 critical elements of effective PTW systems and common failure modes to avoid.]]></description>
+    </item>
+    <item>
+      <title>Near Miss Reporting: Turning &quot;Small&quot; Events into Big Risk Reduction</title>
+      <link>https://safetywarden.com/blog/near-miss-reporting-risk-reduction</link>
+      <guid isPermaLink="true">https://safetywarden.com/blog/near-miss-reporting-risk-reduction</guid>
+      <pubDate>Thu, 02 Jan 2025 00:00:00 GMT</pubDate>
+      <author>hello@safetywarden.com (SafetyWarden Team)</author>
+      <category>Safety Culture</category>
+      <description><![CDATA[For every serious incident, there are 300 near misses that went unreported. Learn how to build a proactive near miss culture that prevents major incidents.]]></description>
+    </item>
+    <item>
+      <title>Digital Safety Audits vs Paper Checklists: ROI, Evidence, and Legal Defensibility</title>
+      <link>https://safetywarden.com/blog/digital-safety-audits-vs-paper-roi-legal-proof</link>
+      <guid isPermaLink="true">https://safetywarden.com/blog/digital-safety-audits-vs-paper-roi-legal-proof</guid>
+      <pubDate>Mon, 30 Dec 2024 00:00:00 GMT</pubDate>
+      <author>hello@safetywarden.com (SafetyWarden Team)</author>
+      <category>Digital Transformation</category>
+      <description><![CDATA[Paper checklists are slow, error-prone, and legally weak. Discover the real ROI of digital safety audits and why courts and regulators demand digital evidence.]]></description>
+    </item>
+    <item>
+      <title>EHS Dashboards That Work: 12 Metrics Leadership Actually Uses</title>
+      <link>https://safetywarden.com/blog/ehs-dashboards-12-metrics-leadership-uses</link>
+      <guid isPermaLink="true">https://safetywarden.com/blog/ehs-dashboards-12-metrics-leadership-uses</guid>
+      <pubDate>Sat, 28 Dec 2024 00:00:00 GMT</pubDate>
+      <author>hello@safetywarden.com (SafetyWarden Team)</author>
+      <category>Analytics</category>
+      <description><![CDATA[Most EHS dashboards drown leadership in data without insight. Learn the 12 metrics that drive decisions and how to present them for maximum impact.]]></description>
+    </item>
+    <item>
+      <title>Incident Readiness: What to Prepare Before a Regulator or Client Audit</title>
+      <link>https://safetywarden.com/blog/incident-readiness-before-regulator-client-audit</link>
+      <guid isPermaLink="true">https://safetywarden.com/blog/incident-readiness-before-regulator-client-audit</guid>
+      <pubDate>Thu, 26 Dec 2024 00:00:00 GMT</pubDate>
+      <author>hello@safetywarden.com (SafetyWarden Team)</author>
+      <category>Inspection Readiness</category>
+      <description><![CDATA[Auditors don't just check documents—they test your emergency response. Learn the 15 critical elements auditors verify and how to prepare for incident readiness audits.]]></description>
+    </item>
+  </channel>
+</rss>

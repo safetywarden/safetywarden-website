@@ -1,0 +1,9 @@
+affiliate_id,link_code,target_type,target_id,utm_source,utm_medium,utm_campaign,description
+AF-001,RAVI-FW-2024,Course,FW-BASIC-001,affiliate_ravi,referral,fire_warden_2024,Fire Warden Training promotion by Ravi Kumar
+AF-001,RAVI-GENERAL-2024,General,,affiliate_ravi,referral,general_2024,General SafetyWarden promotion by Ravi Kumar
+AF-002,SARAH-NEBOSH-2024,Course,NEBOSH-IGC-001,affiliate_sarah,referral,nebosh_gcc_2024,NEBOSH training promotion for GCC region
+AF-002,SARAH-ADVANCED-2024,General,,affiliate_sarah,referral,advanced_courses_2024,Advanced safety courses promotion
+AF-003,AMIT-INDUSTRIAL-2024,General,,affiliate_amit,referral,industrial_safety_2024,Industrial safety training promotion
+AF-003,AMIT-FIRSTAID-2024,Course,FA-BASIC-001,affiliate_amit,referral,first_aid_2024,First Aid training promotion
+AF-004,CORP-TRAINING-2024,General,,affiliate_corporate,referral,corporate_training_2024,Corporate training solutions
+AF-005,ONLINE-COURSES-2024,General,,affiliate_online,referral,online_training_2024,Online training courses promotion

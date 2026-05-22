@@ -1,0 +1,326 @@
+/*
+  # Seed Training Data
+
+  1. Sample Training Providers
+  2. Core Safety Courses
+  3. Sample Training Sessions
+  4. Demo Affiliates
+  5. Sample Coupons
+*/
+
+-- Insert sample training providers
+INSERT INTO training_providers (id, legal_name, brand_name, address, city, state, country, contact_name, contact_email, phone, website, certifications, payout_terms_days, status) VALUES
+(gen_random_uuid(), 'SafetyFirst Training Institute Pvt Ltd', 'SafetyFirst Academy', '123 Training Complex, Sector 5', 'Bengaluru', 'Karnataka', 'India', 'Rajesh Kumar', 'rajesh@safetyfirst.in', '+91-9876543210', 'https://safetyfirst.in', ARRAY['NEBOSH', 'IOSH', 'NFPA'], 30, 'Approved'),
+(gen_random_uuid(), 'Fire Safety Excellence LLC', 'FSE Training', '456 Business Bay, Level 12', 'Dubai', 'Dubai', 'UAE', 'Ahmed Al-Rashid', 'ahmed@fsetraining.ae', '+971-50-1234567', 'https://fsetraining.ae', ARRAY['NFPA', 'IOSH', 'NEBOSH'], 45, 'Approved'),
+(gen_random_uuid(), 'Industrial Safety Solutions', 'ISS Academy', '789 Industrial Area, Phase 2', 'Mumbai', 'Maharashtra', 'India', 'Priya Sharma', 'priya@issacademy.com', '+91-9123456789', 'https://issacademy.com', ARRAY['IOSH', 'OSHA'], 30, 'Approved');
+
+-- Insert core safety courses
+INSERT INTO courses (id, provider_id, course_code, title, description, category, level, duration_hours, theory_hours, practical_hours, max_participants, prerequisites, learning_outcomes, certification_validity_months, price_per_seat, bulk_discount_tiers, pass_mark_theory, pass_mark_practical, seo_keywords) VALUES
+
+-- Fire Warden Training
+(gen_random_uuid(), 
+ (SELECT id FROM training_providers WHERE brand_name = 'SafetyFirst Academy' LIMIT 1),
+ 'FW-BASIC-001',
+ 'Fire Warden Training - Basic Level',
+ 'Comprehensive fire warden training covering emergency procedures, evacuation protocols, and fire safety equipment usage. Ideal for workplace fire wardens and safety coordinators.',
+ 'Fire Safety',
+ 'Beginner',
+ 8,
+ 6,
+ 2,
+ 25,
+ ARRAY['Basic safety awareness'],
+ ARRAY['Understand fire triangle and classes', 'Operate fire extinguishers safely', 'Lead evacuation procedures', 'Conduct fire drills', 'Maintain fire safety equipment'],
+ 36,
+ 2500,
+ '[{"min_seats": 10, "discount_percent": 10}, {"min_seats": 25, "discount_percent": 15}, {"min_seats": 50, "discount_percent": 20}]'::jsonb,
+ 70,
+ 80,
+ ARRAY['fire warden training', 'fire safety', 'evacuation procedures', 'fire extinguisher training']),
+
+-- NEBOSH IGC
+(gen_random_uuid(),
+ (SELECT id FROM training_providers WHERE brand_name = 'SafetyFirst Academy' LIMIT 1),
+ 'NEBOSH-IGC-001',
+ 'NEBOSH International General Certificate',
+ 'Internationally recognized health and safety qualification. Covers risk assessment, hazard identification, and safety management systems.',
+ 'Health & Safety',
+ 'Intermediate',
+ 120,
+ 100,
+ 20,
+ 20,
+ ARRAY['Basic education (12th pass)', 'Work experience preferred'],
+ ARRAY['Conduct risk assessments', 'Implement safety management systems', 'Investigate incidents', 'Develop safety policies', 'Lead safety teams'],
+ 60,
+ 45000,
+ '[{"min_seats": 5, "discount_percent": 8}, {"min_seats": 10, "discount_percent": 12}, {"min_seats": 20, "discount_percent": 18}]'::jsonb,
+ 75,
+ 75,
+ ARRAY['NEBOSH', 'health safety certificate', 'risk assessment', 'safety management']),
+
+-- First Aid Training
+(gen_random_uuid(),
+ (SELECT id FROM training_providers WHERE brand_name = 'ISS Academy' LIMIT 1),
+ 'FA-BASIC-001',
+ 'First Aid & CPR Training',
+ 'Essential first aid and CPR training for workplace emergencies. Includes hands-on practice with mannequins and emergency scenarios.',
+ 'Emergency Response',
+ 'Beginner',
+ 16,
+ 8,
+ 8,
+ 15,
+ ARRAY[],
+ ARRAY['Perform CPR correctly', 'Treat common injuries', 'Handle medical emergencies', 'Use AED equipment', 'Provide emergency care'],
+ 24,
+ 3500,
+ '[{"min_seats": 8, "discount_percent": 10}, {"min_seats": 15, "discount_percent": 15}]'::jsonb,
+ 80,
+ 85,
+ ARRAY['first aid training', 'CPR training', 'emergency response', 'medical emergency']),
+
+-- Safety Officer Course
+(gen_random_uuid(),
+ (SELECT id FROM training_providers WHERE brand_name = 'FSE Training' LIMIT 1),
+ 'SO-ADV-001',
+ 'Certified Safety Officer Program',
+ 'Advanced safety officer certification covering industrial safety, legal compliance, and safety management. Suitable for safety professionals and managers.',
+ 'Professional Development',
+ 'Advanced',
+ 80,
+ 60,
+ 20,
+ 12,
+ ARRAY['Engineering degree or equivalent', '2+ years safety experience'],
+ ARRAY['Develop safety programs', 'Ensure regulatory compliance', 'Conduct safety audits', 'Manage safety teams', 'Investigate incidents'],
+ 48,
+ 35000,
+ '[{"min_seats": 3, "discount_percent": 10}, {"min_seats": 6, "discount_percent": 15}, {"min_seats": 12, "discount_percent": 20}]'::jsonb,
+ 75,
+ 80,
+ ARRAY['safety officer certification', 'industrial safety', 'safety management', 'compliance training']),
+
+-- Confined Space Entry
+(gen_random_uuid(),
+ (SELECT id FROM training_providers WHERE brand_name = 'ISS Academy' LIMIT 1),
+ 'CSE-SPEC-001',
+ 'Confined Space Entry & Rescue',
+ 'Specialized training for confined space entry procedures, atmospheric testing, and rescue operations. Critical for industrial and construction workers.',
+ 'Specialized Safety',
+ 'Intermediate',
+ 24,
+ 16,
+ 8,
+ 10,
+ ARRAY['Basic safety training', 'Medical fitness certificate'],
+ ARRAY['Identify confined space hazards', 'Use atmospheric testing equipment', 'Follow entry procedures', 'Perform rescue operations', 'Use safety equipment'],
+ 36,
+ 8500,
+ '[{"min_seats": 5, "discount_percent": 12}, {"min_seats": 10, "discount_percent": 18}]'::jsonb,
+ 80,
+ 85,
+ ARRAY['confined space training', 'rescue training', 'atmospheric testing', 'industrial safety']);
+
+-- Insert sample training sessions (next 3 months)
+INSERT INTO training_sessions (id, course_id, provider_id, session_code, mode, venue, address, city, state, country, start_date, end_date, start_time, end_time, max_seats, available_seats, price_per_seat, status) VALUES
+
+-- Fire Warden sessions
+(gen_random_uuid(),
+ (SELECT id FROM courses WHERE course_code = 'FW-BASIC-001'),
+ (SELECT provider_id FROM courses WHERE course_code = 'FW-BASIC-001'),
+ 'FW-BLR-2024-001',
+ 'Classroom',
+ 'SafetyFirst Training Center',
+ '123 Training Complex, Sector 5',
+ 'Bengaluru',
+ 'Karnataka',
+ 'India',
+ CURRENT_DATE + INTERVAL '15 days',
+ CURRENT_DATE + INTERVAL '15 days',
+ '09:00:00',
+ '17:00:00',
+ 25,
+ 25,
+ 2500,
+ 'Published'),
+
+(gen_random_uuid(),
+ (SELECT id FROM courses WHERE course_code = 'FW-BASIC-001'),
+ (SELECT provider_id FROM courses WHERE course_code = 'FW-BASIC-001'),
+ 'FW-MUM-2024-001',
+ 'Classroom',
+ 'Mumbai Training Hub',
+ '456 Business District',
+ 'Mumbai',
+ 'Maharashtra',
+ 'India',
+ CURRENT_DATE + INTERVAL '22 days',
+ CURRENT_DATE + INTERVAL '22 days',
+ '09:00:00',
+ '17:00:00',
+ 25,
+ 25,
+ 2500,
+ 'Published'),
+
+-- NEBOSH sessions
+(gen_random_uuid(),
+ (SELECT id FROM courses WHERE course_code = 'NEBOSH-IGC-001'),
+ (SELECT provider_id FROM courses WHERE course_code = 'NEBOSH-IGC-001'),
+ 'NEB-BLR-2024-001',
+ 'Hybrid',
+ 'SafetyFirst Training Center',
+ '123 Training Complex, Sector 5',
+ 'Bengaluru',
+ 'Karnataka',
+ 'India',
+ CURRENT_DATE + INTERVAL '30 days',
+ CURRENT_DATE + INTERVAL '44 days',
+ '09:00:00',
+ '17:00:00',
+ 20,
+ 20,
+ 45000,
+ 'Published'),
+
+-- First Aid sessions
+(gen_random_uuid(),
+ (SELECT id FROM courses WHERE course_code = 'FA-BASIC-001'),
+ (SELECT provider_id FROM courses WHERE course_code = 'FA-BASIC-001'),
+ 'FA-MUM-2024-001',
+ 'Classroom',
+ 'ISS Training Center',
+ '789 Industrial Area, Phase 2',
+ 'Mumbai',
+ 'Maharashtra',
+ 'India',
+ CURRENT_DATE + INTERVAL '18 days',
+ CURRENT_DATE + INTERVAL '19 days',
+ '09:00:00',
+ '17:00:00',
+ 15,
+ 15,
+ 3500,
+ 'Published'),
+
+-- Safety Officer sessions
+(gen_random_uuid(),
+ (SELECT id FROM courses WHERE course_code = 'SO-ADV-001'),
+ (SELECT provider_id FROM courses WHERE course_code = 'SO-ADV-001'),
+ 'SO-DXB-2024-001',
+ 'Classroom',
+ 'FSE Training Center',
+ '456 Business Bay, Level 12',
+ 'Dubai',
+ 'Dubai',
+ 'UAE',
+ CURRENT_DATE + INTERVAL '25 days',
+ CURRENT_DATE + INTERVAL '34 days',
+ '09:00:00',
+ '16:00:00',
+ 12,
+ 12,
+ 35000,
+ 'Published');
+
+-- Insert sample affiliates
+INSERT INTO affiliates (id, name, email, phone, company, address, city, state, country, commission_saas_percent, commission_training_percent, lead_bounty_amount, status) VALUES
+(gen_random_uuid(), 'Ravi Kumar', 'ravi.kumar@safetypartner.com', '+91-9876543210', 'Safety Partners India', '123 Business Avenue', 'Bengaluru', 'Karnataka', 'India', 12, 18, 750, 'Active'),
+(gen_random_uuid(), 'Sarah Ahmed', 'sarah@gcctraining.ae', '+971-50-9876543', 'GCC Training Solutions', '789 Trade Center', 'Dubai', 'Dubai', 'UAE', 15, 20, 1000, 'Active'),
+(gen_random_uuid(), 'Amit Patel', 'amit@industrialsafety.in', '+91-9123456789', 'Industrial Safety Consultants', '456 Safety Plaza', 'Mumbai', 'Maharashtra', 'India', 10, 15, 500, 'Active');
+
+-- Insert sample affiliate links
+INSERT INTO affiliate_links (id, affiliate_id, link_code, target_type, utm_source, utm_medium, utm_campaign, active) VALUES
+(gen_random_uuid(), 
+ (SELECT id FROM affiliates WHERE email = 'ravi.kumar@safetypartner.com'),
+ 'RAVI-FW-2024',
+ 'Course',
+ 'affiliate_ravi',
+ 'referral',
+ 'fire_warden_2024',
+ true),
+(gen_random_uuid(),
+ (SELECT id FROM affiliates WHERE email = 'sarah@gcctraining.ae'),
+ 'SARAH-NEBOSH-2024',
+ 'Course',
+ 'affiliate_sarah',
+ 'referral',
+ 'nebosh_gcc_2024',
+ true),
+(gen_random_uuid(),
+ (SELECT id FROM affiliates WHERE email = 'amit@industrialsafety.in'),
+ 'AMIT-GENERAL-2024',
+ 'General',
+ 'affiliate_amit',
+ 'referral',
+ 'general_2024',
+ true);
+
+-- Insert sample coupons
+INSERT INTO coupons (id, code, description, discount_type, discount_value, min_order_value, usage_limit, valid_from, valid_until, applicable_courses, active) VALUES
+(gen_random_uuid(), 'WELCOME10', 'Welcome discount for new customers', 'Percentage', 10, 2000, 100, CURRENT_DATE, CURRENT_DATE + INTERVAL '90 days', ARRAY[], true),
+(gen_random_uuid(), 'BULK25', 'Bulk enrollment discount', 'Percentage', 25, 50000, 50, CURRENT_DATE, CURRENT_DATE + INTERVAL '180 days', ARRAY[], true),
+(gen_random_uuid(), 'FIREWARDEN500', 'Fire Warden course discount', 'Fixed', 500, 0, 200, CURRENT_DATE, CURRENT_DATE + INTERVAL '60 days', ARRAY['FW-BASIC-001'], true),
+(gen_random_uuid(), 'EARLYBIRDNEBOSH', 'Early bird NEBOSH discount', 'Percentage', 15, 40000, 30, CURRENT_DATE, CURRENT_DATE + INTERVAL '45 days', ARRAY['NEBOSH-IGC-001'], true);
+
+-- Insert sample questions for Fire Warden course
+INSERT INTO questions (id, course_id, question_text, question_type, options, correct_answer, explanation, difficulty, topic, active) VALUES
+(gen_random_uuid(),
+ (SELECT id FROM courses WHERE course_code = 'FW-BASIC-001'),
+ 'What are the three elements of the fire triangle?',
+ 'MCQ',
+ '["Heat, Fuel, Oxygen", "Heat, Fuel, Carbon Dioxide", "Heat, Water, Oxygen", "Fuel, Water, Carbon Dioxide"]'::jsonb,
+ 'Heat, Fuel, Oxygen',
+ 'The fire triangle consists of Heat (ignition source), Fuel (combustible material), and Oxygen (oxidizer). Remove any one element to extinguish fire.',
+ 'Easy',
+ 'Fire Science',
+ true),
+
+(gen_random_uuid(),
+ (SELECT id FROM courses WHERE course_code = 'FW-BASIC-001'),
+ 'Class C fires involve which type of materials?',
+ 'MCQ',
+ '["Ordinary combustibles", "Flammable liquids", "Electrical equipment", "Cooking oils"]'::jsonb,
+ 'Electrical equipment',
+ 'Class C fires involve energized electrical equipment. Never use water on electrical fires.',
+ 'Medium',
+ 'Fire Classification',
+ true),
+
+(gen_random_uuid(),
+ (SELECT id FROM courses WHERE course_code = 'FW-BASIC-001'),
+ 'The PASS technique for fire extinguisher use stands for?',
+ 'MCQ',
+ '["Pull, Aim, Squeeze, Sweep", "Push, Aim, Squeeze, Stop", "Pull, Alert, Squeeze, Sweep", "Push, Alert, Squeeze, Stop"]'::jsonb,
+ 'Pull, Aim, Squeeze, Sweep',
+ 'PASS: Pull the pin, Aim at base of fire, Squeeze the handle, Sweep side to side.',
+ 'Easy',
+ 'Fire Extinguisher Use',
+ true),
+
+(gen_random_uuid(),
+ (SELECT id FROM courses WHERE course_code = 'FW-BASIC-001'),
+ 'Fire wardens should evacuate themselves only after ensuring all occupants have evacuated.',
+ 'True/False',
+ '["True", "False"]'::jsonb,
+ 'True',
+ 'Fire wardens have the responsibility to ensure all occupants evacuate safely before evacuating themselves.',
+ 'Medium',
+ 'Evacuation Procedures',
+ true),
+
+(gen_random_uuid(),
+ (SELECT id FROM courses WHERE course_code = 'FW-BASIC-001'),
+ 'What is the maximum travel distance to a fire extinguisher for Class A fires?',
+ 'MCQ',
+ '["50 feet", "75 feet", "100 feet", "125 feet"]'::jsonb,
+ '75 feet',
+ 'NFPA 10 requires maximum 75 feet travel distance to fire extinguishers for Class A fires.',
+ 'Hard',
+ 'Fire Safety Codes',
+ true);
+
+-- Log successful seeding
+INSERT INTO admin_migration_logs (script, success, logs, ran_at)
+VALUES ('12_training_seed', true, ARRAY['Training providers created', 'Core courses added', 'Sample sessions scheduled', 'Affiliates and coupons configured'], now());

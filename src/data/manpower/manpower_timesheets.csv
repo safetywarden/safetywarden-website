@@ -1,0 +1,11 @@
+timesheet_id,placement_id,candidate_id,job_order_id,week_start_date,mon_hrs,tue_hrs,wed_hrs,thu_hrs,fri_hrs,sat_hrs,sun_hrs,ot_hrs,total_regular_hrs,total_payable_hrs,approver_name,approver_email,status,submitted_date,approved_date
+TS-001,PL-001,CA-5001,JO-1001,2024-12-02,8,8,8,8,8,4,0,4,44,48,Ravi Kumar,ravi.kumar@example.com,Approved,2024-12-06,2024-12-07
+TS-002,PL-002,CA-5002,JO-1002,2024-12-02,8,8,8,8,8,0,0,0,40,40,Anita Sharma,anita.sharma@citycare.in,Approved,2024-12-06,2024-12-08
+TS-003,PL-003,CA-5003,JO-1003,2024-12-02,8,8,8,8,8,0,0,2,40,42,Suresh Reddy,suresh.reddy@metromanuf.com,Approved,2024-12-06,2024-12-07
+TS-004,PL-004,CA-5006,JO-1006,2024-12-02,8,8,8,8,8,8,8,8,56,64,Ravi Kumar,ravi.kumar@example.com,Approved,2024-12-06,2024-12-09
+TS-005,PL-001,CA-5001,JO-1001,2024-12-09,8,8,8,8,8,4,0,2,44,46,Ravi Kumar,ravi.kumar@example.com,Approved,2024-12-13,2024-12-14
+TS-006,PL-002,CA-5002,JO-1002,2024-12-09,8,8,8,8,8,0,0,0,40,40,Anita Sharma,anita.sharma@citycare.in,Submitted,2024-12-13,
+TS-007,PL-003,CA-5003,JO-1003,2024-12-09,8,8,8,8,8,0,0,3,40,43,Suresh Reddy,suresh.reddy@metromanuf.com,Submitted,2024-12-13,
+TS-008,PL-004,CA-5006,JO-1006,2024-12-09,8,8,8,8,8,8,8,6,56,62,Ravi Kumar,ravi.kumar@example.com,Draft,,,
+TS-009,PL-001,CA-5001,JO-1001,2024-12-16,8,8,8,8,8,4,0,0,44,44,Ravi Kumar,ravi.kumar@example.com,Draft,,,
+TS-010,PL-002,CA-5002,JO-1002,2024-12-16,8,8,8,8,8,0,0,0,40,40,Anita Sharma,anita.sharma@citycare.in,Draft,,,

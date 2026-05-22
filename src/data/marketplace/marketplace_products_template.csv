@@ -1,0 +1,3 @@
+sku,product_name,brand,category_id,description,uom,mrp,tax_rate,min_order_qty,lead_time_days,warranty_months,approval_codes,hs_code,country_of_origin,images,datasheet_url,attributes
+ABC-6KG-UL,ABC Dry Powder Extinguisher 6kg,BrandX,CAT-110,6kg ABC powder fire extinguisher with pressure gauge and wall bracket.,unit,2450,18,2,7,24,UL|ISI,84241000,IN,https://example.com/abc6kg.jpg,https://example.com/abc6kg.pdf,"capacity=6|rating_class=ABC|approval=UL,ISI|origin=IN|lead_time=7"
+CO2-4.5KG-ISI,CO2 Fire Extinguisher 4.5kg,BrandY,CAT-111,4.5kg CO2 extinguisher with horn; suitable for electrical fires.,unit,3550,18,1,5,12,ISI,84241000,IN,https://example.com/co2-4_5.jpg,https://example.com/co2-4_5.pdf,capacity=4.5|rating_class=CO2|approval=ISI|origin=IN|lead_time=5

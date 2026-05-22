@@ -1,0 +1,10 @@
+client_id,role_title,pay_unit,pay_rate,employer_cost_pct,overhead_pct,margin_pct,bill_rate_out,notes
+CL-0001,Fire & Safety Warden,Monthly,20000,0.18,0.06,0.12,27200,bill_rate_out = pay_rate × (1 + employer_cost_pct + overhead_pct + margin_pct)
+CL-0001,Security Guard,Monthly,16500,0.18,0.06,0.10,22110,Standard security role with basic training
+CL-0002,Patient Care Assistant,Monthly,18500,0.18,0.05,0.10,24605,Healthcare sector with specialized training
+CL-0002,Housekeeping Supervisor,Monthly,22500,0.18,0.05,0.12,30375,Supervisory role with team management
+CL-0003,HSE Supervisor,Monthly,52500,0.18,0.04,0.15,71925,Senior role with NEBOSH certification required
+CL-0003,Maintenance Technician,Monthly,28500,0.18,0.05,0.12,38475,Technical role with ITI/Diploma requirement
+CL-0004,Warehouse Safety Officer,Monthly,10000,0.08,0.07,0.20,13500,UAE rates in AED converted to USD equivalent
+CL-0005,Safety Trainer,Monthly,40000,0.18,0.04,0.18,56000,Specialized training delivery role
+CL-0005,Fire & Safety Warden,Monthly,19000,0.18,0.06,0.14,26220,Consulting firm rates slightly lower

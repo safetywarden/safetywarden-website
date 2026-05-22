@@ -1,0 +1,11 @@
+attribute_code,name,datatype,unit,facet,applies_to
+approval,Approvals,multiselect,,TRUE,CAT-100|CAT-200|CAT-300|CAT-400|CAT-500
+capacity,Capacity,number,kg/L,TRUE,CAT-100
+rating_class,Rating Class,text,,TRUE,CAT-100
+thread_size,Thread/Size,text,,TRUE,CAT-300
+material,Material,text,,TRUE,CAT-300|CAT-400
+voltage,Voltage,number,V,TRUE,CAT-400
+brand,Brand,text,,TRUE,ALL
+lead_time,Lead Time,number,days,TRUE,ALL
+origin,Country of Origin,text,,TRUE,ALL
+warranty,Warranty,number,months,FALSE,ALL

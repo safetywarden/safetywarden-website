@@ -1,0 +1,13 @@
+session_code,course_code,provider_id,organization_id,mode,venue,address,city,state,country,start_date,end_date,start_time,end_time,timezone,max_seats,available_seats,price_per_seat,early_bird_discount,early_bird_deadline,status,meeting_link,materials_link
+FW-BLR-2024-001,FW-BASIC-001,TP-001,,Classroom,SafetyFirst Training Center,123 Training Complex Sector 5,Bengaluru,Karnataka,India,2024-03-15,2024-03-15,09:00,17:00,Asia/Kolkata,25,18,2500,,,Published,,
+FW-MUM-2024-001,FW-BASIC-001,TP-001,,Classroom,Mumbai Training Hub,456 Business District,Mumbai,Maharashtra,India,2024-03-22,2024-03-22,09:00,17:00,Asia/Kolkata,25,22,2500,,,Published,,
+FW-CHE-2024-001,FW-BASIC-001,TP-004,,Classroom,WSI Training Center,321 Safety Boulevard,Chennai,Tamil Nadu,India,2024-03-28,2024-03-28,09:00,17:00,Asia/Kolkata,25,25,2500,200,2024-03-20,Published,,
+NEB-BLR-2024-001,NEBOSH-IGC-001,TP-001,,Hybrid,SafetyFirst Training Center,123 Training Complex Sector 5,Bengaluru,Karnataka,India,2024-04-01,2024-04-15,09:00,17:00,Asia/Kolkata,20,15,45000,3000,2024-03-25,Published,https://meet.safetywarden.com/nebosh-blr-001,https://materials.safetywarden.com/nebosh-igc
+NEB-DXB-2024-001,NEBOSH-IGC-001,TP-002,,Classroom,FSE Training Center,456 Business Bay Level 12,Dubai,Dubai,UAE,2024-04-08,2024-04-22,09:00,16:00,Asia/Dubai,20,20,45000,,,Published,,
+FA-MUM-2024-001,FA-BASIC-001,TP-003,,Classroom,ISS Training Center,789 Industrial Area Phase 2,Mumbai,Maharashtra,India,2024-03-18,2024-03-19,09:00,17:00,Asia/Kolkata,15,12,3500,,,Published,,
+FA-BLR-2024-001,FA-BASIC-001,TP-001,,Online,Online Session,,Bengaluru,Karnataka,India,2024-03-25,2024-03-26,14:00,18:00,Asia/Kolkata,30,28,3200,,,Published,https://meet.safetywarden.com/fa-online-001,
+SO-DXB-2024-001,SO-ADV-001,TP-002,,Classroom,FSE Training Center,456 Business Bay Level 12,Dubai,Dubai,UAE,2024-04-10,2024-04-19,09:00,16:00,Asia/Dubai,12,8,35000,2500,2024-04-01,Published,,
+CSE-MUM-2024-001,CSE-SPEC-001,TP-003,,Classroom,ISS Training Center,789 Industrial Area Phase 2,Mumbai,Maharashtra,India,2024-04-05,2024-04-07,08:00,17:00,Asia/Kolkata,10,7,8500,500,2024-03-28,Published,,
+IOSH-CHE-2024-001,IOSH-MS-001,TP-004,,Classroom,WSI Training Center,321 Safety Boulevard,Chennai,Tamil Nadu,India,2024-04-12,2024-04-15,09:00,17:00,Asia/Kolkata,16,14,25000,1500,2024-04-05,Published,,
+HAZMAT-RYD-2024-001,HAZMAT-001,TP-005,,Classroom,GSTC Training Facility,654 Training Plaza,Riyadh,Riyadh,Saudi Arabia,2024-04-20,2024-04-24,08:00,16:00,Asia/Riyadh,12,12,15000,,,Published,,
+CRANE-CHE-2024-001,CRANE-SAFETY-001,TP-004,,Classroom,WSI Training Center,321 Safety Boulevard,Chennai,Tamil Nadu,India,2024-04-15,2024-04-17,08:00,17:00,Asia/Kolkata,8,6,12000,800,2024-04-08,Published,,

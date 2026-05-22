@@ -1,0 +1,45 @@
+# SafetyWarden.com Robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://safetywarden.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin and private areas
+Disallow: /app/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_redirects
+Disallow: /*.json$
+
+# Allow important pages
+Allow: /solutions/
+Allow: /training/
+Allow: /marketplace/
+Allow: /manpower/
+Allow: /industries/
+Allow: /pricing/
+Allow: /resources/
+Allow: /about/
+Allow: /contact/
+
+# Block common bot traps
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+
+# Allow social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
