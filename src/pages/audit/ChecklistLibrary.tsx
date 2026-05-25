@@ -3,7 +3,6 @@ import { Plus, Upload, Download, Edit, Trash2, Filter, Search } from 'lucide-rea
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
 import { ChecklistItem } from '../../types/audit';
-import { ExcelParser, ExcelChecklistItem } from '../../utils/excelParser';
 
 const ChecklistLibrary: React.FC = () => {
   const { currentOrganization, userRole } = useAuth();
@@ -129,6 +128,7 @@ const ChecklistLibrary: React.FC = () => {
     setImportProgress('Parsing Excel file...');
     
     try {
+      const { ExcelParser } = await import('../../utils/excelParser');
       const items = await ExcelParser.parseChecklistFile(file);
       setImportProgress(`Parsed ${items.length} items. Importing to database...`);
       

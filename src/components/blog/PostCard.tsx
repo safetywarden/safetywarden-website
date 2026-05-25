@@ -21,6 +21,10 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           <img
             src={post.coverImage}
             alt={post.title}
+            loading="lazy"
+            decoding="async"
+            width={900}
+            height={506}
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
           <div className="absolute top-4 left-4">

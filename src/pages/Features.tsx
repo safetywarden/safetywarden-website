@@ -156,7 +156,7 @@ const Features = () => {
                 Book Demo <ArrowRight className="ml-2 h-5 w-5" />
               </a>
               <a
-                href="/app/auth/login"
+                href="https://app.safetywarden.com"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-slate-100 text-slate-900 font-semibold rounded-lg transition-colors"
               >
                 Try Sample Checklist
@@ -178,8 +178,9 @@ const Features = () => {
           <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
             <video
               controls
+              preload="none"
               className="w-full"
-              poster="/safetywarden_digital_audit.jpg"
+              poster="/images/optimized/safetywarden_digital_audit.webp"
             >
               <source src="/inspectiondemo.mp4" type="video/mp4" />
               Your browser does not support the video tag.

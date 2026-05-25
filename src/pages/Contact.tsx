@@ -221,7 +221,7 @@ const Contact: React.FC = () => {
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-slate-600">Email Support:</span>
-                      <span className="text-slate-900 font-medium">24/7</span>
+                      <span className="text-slate-900 font-medium">Business hours</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-slate-600">Phone Support:</span>
@@ -250,7 +250,7 @@ const Contact: React.FC = () => {
             Ready to Get Started?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join hundreds of organizations that trust SafetyWarden for their safety compliance needs
+            Discuss how SafetyWarden can support audit workflows, evidence traceability and compliance governance across your operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors">

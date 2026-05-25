@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, Users, Award, Calendar, MapPin, Star, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Clock, Users, Award, Calendar, MapPin, CheckCircle } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { Course, TrainingSession } from '../../types/training';
 
@@ -128,10 +128,7 @@ const CourseDetail: React.FC = () => {
               </div>
               
               <div className="flex items-center space-x-4 mb-8">
-                <div className="flex items-center space-x-1">
-                  <Star className="h-5 w-5 text-yellow-400 fill-current" />
-                  <span className="text-slate-600">4.8 (124 reviews)</span>
-                </div>
+                <span className="text-slate-600">{course.category}</span>
                 <span className="text-slate-600">
                   by {course.provider?.brand_name}
                 </span>

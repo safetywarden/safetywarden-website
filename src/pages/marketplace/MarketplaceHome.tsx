@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Search, ArrowRight, Shield, Users, Award, TrendingUp } from 'lucide-react';
+import { Search, ArrowRight, Shield } from 'lucide-react';
 import { getImportedCategories } from '../../data/marketplace/importedData';
 import SEOHead from '../../components/SEO/SEOHead';
 import { seoPages } from '../../utils/seo';
@@ -13,11 +13,11 @@ const MarketplaceHome: React.FC = () => {
     'FireTech', 'SafeGuard', 'Emergency Systems', 'ProSafety', 'SecureShield'
   ];
 
-  const stats = [
-    { icon: <Users className="h-8 w-8 text-blue-600" />, number: '500+', label: 'Verified Vendors' },
-    { icon: <Shield className="h-8 w-8 text-emerald-600" />, number: '10,000+', label: 'Safety Products' },
-    { icon: <Award className="h-8 w-8 text-orange-600" />, number: '50,000+', label: 'Orders Delivered' },
-    { icon: <TrendingUp className="h-8 w-8 text-purple-600" />, number: '98%', label: 'Customer Satisfaction' }
+  const procurementControls = [
+    'Vendor verification workflows',
+    'Structured RFQ collection',
+    'Category-based sourcing',
+    'Procurement documentation'
   ];
 
   return (
@@ -75,17 +75,16 @@ const MarketplaceHome: React.FC = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Procurement Controls */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+            {procurementControls.map((control, index) => (
               <div key={index} className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full mb-4">
-                  {stat.icon}
+                  <Shield className="h-8 w-8 text-navy-600" />
                 </div>
-                <div className="text-3xl font-bold text-navy-900 mb-2">{stat.number}</div>
-                <div className="text-slate-600">{stat.label}</div>
+                <div className="text-slate-900 font-semibold">{control}</div>
               </div>
             ))}
           </div>
@@ -203,7 +202,7 @@ const MarketplaceHome: React.FC = () => {
             Ready to Source Safety Equipment?
           </h2>
           <p className="text-xl text-orange-100 mb-8">
-            Join thousands of businesses who trust our marketplace for their safety needs
+            Source safety equipment through structured RFQ workflows and vendor documentation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

@@ -7,11 +7,11 @@ declare global {
   }
 }
 
-export const GA_TRACKING_ID = 'G-XXXXXXXXXX'; // Replace with actual GA4 tracking ID
+export const GA_TRACKING_ID = import.meta.env.VITE_GA_TRACKING_ID || '';
 
 // Initialize Google Analytics
 export const initGA = () => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && GA_TRACKING_ID) {
     window.dataLayer = window.dataLayer || [];
     window.gtag = function gtag() {
       window.dataLayer.push(arguments);
@@ -26,7 +26,7 @@ export const initGA = () => {
 
 // Track page views
 export const trackPageView = (url: string, title: string) => {
-  if (typeof window !== 'undefined' && window.gtag) {
+  if (typeof window !== 'undefined' && GA_TRACKING_ID && window.gtag) {
     window.gtag('config', GA_TRACKING_ID, {
       page_title: title,
       page_location: url,
@@ -36,7 +36,7 @@ export const trackPageView = (url: string, title: string) => {
 
 // Track events
 export const trackEvent = (action: string, category: string, label?: string, value?: number) => {
-  if (typeof window !== 'undefined' && window.gtag) {
+  if (typeof window !== 'undefined' && GA_TRACKING_ID && window.gtag) {
     window.gtag('event', action, {
       event_category: category,
       event_label: label,

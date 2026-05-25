@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Clock, Shield, TrendingUp, ArrowRight, CheckCircle, Star, Building2 } from 'lucide-react';
+import { Users, Shield, ArrowRight, CheckCircle, Building2 } from 'lucide-react';
 import HireNowModal from '../../components/manpower/HireNowModal';
 import SEOHead from '../../components/SEO/SEOHead';
 import { seoPages } from '../../utils/seo';
@@ -47,28 +47,11 @@ const ManpowerHome: React.FC = () => {
     { title: 'Technical Support', rate: '₹20,000 - ₹35,000/month', demand: 'Medium' }
   ];
 
-  const stats = [
-    { number: '5,000+', label: 'Workers Placed' },
-    { number: '200+', label: 'Active Clients' },
-    { number: '95%', label: 'Client Retention' },
-    { number: '24/7', label: 'Support Available' }
-  ];
-
-  const testimonials = [
-    {
-      name: 'Rajesh Gupta',
-      company: 'TechCorp Manufacturing',
-      role: 'HR Director',
-      content: 'SafetyWarden Manpower has been our trusted partner for over 2 years. Their quality of candidates and quick turnaround time is exceptional.',
-      rating: 5
-    },
-    {
-      name: 'Dr. Priya Nair',
-      company: 'Metro Hospital Group',
-      role: 'Operations Manager',
-      content: 'The compliance management and payroll handling by SafetyWarden team has simplified our operations significantly.',
-      rating: 5
-    }
+  const deliveryControls = [
+    'Role-based screening',
+    'Document verification',
+    'Deployment coordination',
+    'Payroll and compliance support'
   ];
 
   return (
@@ -108,12 +91,12 @@ const ManpowerHome: React.FC = () => {
               </Link>
             </div>
             
-            {/* Trust Indicators */}
+            {/* Delivery Controls */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
+              {deliveryControls.map((control, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl font-bold text-orange-400 mb-2">{stat.number}</div>
-                  <div className="text-slate-300">{stat.label}</div>
+                  <div className="text-sm font-semibold text-orange-300 mb-2">0{index + 1}</div>
+                  <div className="text-slate-300">{control}</div>
                 </div>
               ))}
             </div>
@@ -218,32 +201,28 @@ const ManpowerHome: React.FC = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Workforce Governance */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
-              What Our Clients Say
+              Workforce Governance
             </h2>
             <p className="text-xl text-slate-600">
-              Trusted by leading organizations across India and GCC
+              Staffing workflows designed for documentation, compliance and operational continuity.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-xl p-8 shadow-sm">
-                <div className="flex items-center space-x-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-slate-700 mb-6 italic">"{testimonial.content}"</p>
-                <div>
-                  <p className="font-semibold text-navy-900">{testimonial.name}</p>
-                  <p className="text-sm text-slate-600">{testimonial.role}</p>
-                  <p className="text-sm text-orange-600 font-medium">{testimonial.company}</p>
-                </div>
+            {[
+              'Candidate records and verification status',
+              'Role requirements and deployment terms',
+              'Attendance, payroll and compliance coordination',
+              'Replacement and escalation workflows'
+            ].map((item) => (
+              <div key={item} className="bg-white rounded-xl p-8 shadow-sm">
+                <CheckCircle className="h-6 w-6 text-orange-600 mb-4" />
+                <p className="font-semibold text-navy-900">{item}</p>
               </div>
             ))}
           </div>
@@ -313,7 +292,7 @@ const ManpowerHome: React.FC = () => {
             Ready to Scale Your Team?
           </h2>
           <p className="text-xl text-orange-100 mb-8">
-            Get qualified staff deployed within 48 hours. No upfront costs, transparent pricing.
+            Share your workforce requirements and align deployment, documentation and compliance support.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button

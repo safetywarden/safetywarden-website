@@ -11,7 +11,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Factories Act', 'Inspection', 'India', 'Compliance'],
     date: '2025-01-15',
     author: 'SafetyWarden Team',
-    coverImage: '/Campus-Safety-Audit.png',
+    coverImage: '/images/optimized/Campus-Safety-Audit.webp',
     readingTime: 8,
     content: `
 ## Introduction
@@ -158,7 +158,7 @@ Factories Act compliance isn't a once-a-year event—it's a daily discipline. Wi
     tags: ['ISO45001', 'EHS', 'Audit', 'SOP'],
     date: '2025-01-12',
     author: 'SafetyWarden Team',
-    coverImage: '/Campusaudit.png',
+    coverImage: '/images/optimized/Campus-Safety-Audit.webp',
     readingTime: 10,
     content: `
 ## Introduction
@@ -381,7 +381,7 @@ ISO 45001 internal audits should be more than a certification requirement—they
     tags: ['Fire Audit', 'NBC', 'Evidence', 'Compliance'],
     date: '2025-01-10',
     author: 'SafetyWarden Team',
-    coverImage: '/Campus-Safety-Audit.png',
+    coverImage: '/images/optimized/Campus-Safety-Audit.webp',
     readingTime: 9,
     content: `
 ## Introduction
@@ -625,7 +625,7 @@ Fire safety compliance isn't about checking boxes—it's about creating verifiab
     tags: ['CAPA', 'Action Tracking', 'Compliance', 'EHS'],
     date: '2025-01-08',
     author: 'SafetyWarden Team',
-    coverImage: '/Campusaudit.png',
+    coverImage: '/images/optimized/Campus-Safety-Audit.webp',
     readingTime: 9,
     content: `
 ## Introduction
@@ -849,7 +849,7 @@ If your CAPA closure rate is below 90%, your safety management system has a crit
     tags: ['Contractors', 'Permit to Work', 'Toolbox Talk', 'Risk'],
     date: '2025-01-06',
     author: 'SafetyWarden Team',
-    coverImage: '/Campus-Safety-Audit.png',
+    coverImage: '/images/optimized/Campus-Safety-Audit.webp',
     readingTime: 10,
     content: `
 ## Introduction
@@ -1144,7 +1144,7 @@ The next contractor incident is preventable if you verify before work starts, sp
     tags: ['PTW', 'Hot Work', 'Confined Space', 'LOTO'],
     date: '2025-01-04',
     author: 'SafetyWarden Team',
-    coverImage: '/Campusaudit.png',
+    coverImage: '/images/optimized/Campus-Safety-Audit.webp',
     readingTime: 11,
     content: `
 ## Introduction
@@ -1423,7 +1423,7 @@ The difference between a PTW system that prevents incidents and one that's just 
     tags: ['Near Miss', 'Reporting', 'Behavior', 'Prevention'],
     date: '2025-01-02',
     author: 'SafetyWarden Team',
-    coverImage: '/Campus-Safety-Audit.png',
+    coverImage: '/images/optimized/Campus-Safety-Audit.webp',
     readingTime: 9,
     content: `
 ## Introduction
@@ -1683,7 +1683,7 @@ The question isn't "How many near misses did you have?" It's "How many near miss
     tags: ['Digital Audit', 'ROI', 'Evidence', 'Legal'],
     date: '2024-12-30',
     author: 'SafetyWarden Team',
-    coverImage: '/Campusaudit.png',
+    coverImage: '/images/optimized/Campus-Safety-Audit.webp',
     readingTime: 10,
     content: `
 ## Introduction
@@ -1992,7 +1992,7 @@ The ROI of digital safety audits is clear: 200%+ return in year one, 70% time sa
     tags: ['KPIs', 'Dashboard', 'Management Review', 'ISO'],
     date: '2024-12-28',
     author: 'SafetyWarden Team',
-    coverImage: '/Campus-Safety-Audit.png',
+    coverImage: '/images/optimized/Campus-Safety-Audit.webp',
     readingTime: 10,
     content: `
 ## Introduction
@@ -2371,7 +2371,7 @@ If your dashboard isn't driving action, it's just noise.
     tags: ['Emergency', 'Compliance', 'Audit', 'Preparedness'],
     date: '2024-12-26',
     author: 'SafetyWarden Team',
-    coverImage: '/Campusaudit.png',
+    coverImage: '/images/optimized/Campus-Safety-Audit.webp',
     readingTime: 11,
     content: `
 ## Introduction

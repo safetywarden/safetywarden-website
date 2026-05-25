@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Calendar, MapPin, Users, Award, Star, Filter, ArrowRight } from 'lucide-react';
+import { Search, Calendar, MapPin, Users, Award, ArrowRight } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { Course, TrainingSession } from '../../types/training';
 import SEOHead from '../../components/SEO/SEOHead';
@@ -74,11 +74,11 @@ const TrainingHome: React.FC = () => {
     return matchesSearch && matchesCity && matchesCategory && matchesMode;
   });
 
-  const stats = [
-    { number: '50+', label: 'Expert Trainers' },
-    { number: '10,000+', label: 'Professionals Trained' },
-    { number: '95%', label: 'Pass Rate' },
-    { number: '4.8/5', label: 'Average Rating' }
+  const trainingControls = [
+    'Competency-based courses',
+    'Provider-led sessions',
+    'Digital certificate records',
+    'Corporate training workflows'
   ];
 
   const featuredCourses = courses.slice(0, 3);
@@ -141,12 +141,12 @@ const TrainingHome: React.FC = () => {
               </div>
             </div>
             
-            {/* Stats */}
+            {/* Training Controls */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
+              {trainingControls.map((control, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl font-bold text-orange-400 mb-2">{stat.number}</div>
-                  <div className="text-slate-300">{stat.label}</div>
+                  <div className="text-sm font-semibold text-orange-300 mb-2">0{index + 1}</div>
+                  <div className="text-slate-300">{control}</div>
                 </div>
               ))}
             </div>
@@ -234,10 +234,7 @@ const TrainingHome: React.FC = () => {
                   </p>
                   
                   <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-1">
-                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                      <span className="text-sm text-slate-600">4.8 (124 reviews)</span>
-                    </div>
+                    <span className="text-sm text-slate-600">{course.category}</span>
                     <div className="text-right">
                       <div className="text-2xl font-bold text-navy-900">
                         ₹{course.price_per_seat.toLocaleString()}
@@ -381,7 +378,7 @@ const TrainingHome: React.FC = () => {
               Why Choose SafetyWarden Training?
             </h2>
             <p className="text-xl text-slate-600">
-              Industry-leading training with digital certificates and lifetime support
+              Structured training workflows with digital certificates and corporate coordination
             </p>
           </div>
           
@@ -402,7 +399,7 @@ const TrainingHome: React.FC = () => {
               </div>
               <h3 className="text-lg font-semibold text-navy-900 mb-2">Digital Certificates</h3>
               <p className="text-sm text-slate-600">
-                QR-verifiable certificates with blockchain-level security
+                QR-verifiable certificates with structured training records
               </p>
             </div>
             
@@ -436,7 +433,7 @@ const TrainingHome: React.FC = () => {
             Ready to Get Certified?
           </h2>
           <p className="text-xl text-orange-100 mb-8">
-            Join thousands of safety professionals who trust SafetyWarden for their training needs
+            Build structured safety training records for teams, sites and compliance reviews.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

@@ -96,7 +96,6 @@ const ProviderPortal: React.FC = () => {
     const totalRevenue = enrollments
       .filter(e => e.payment_status === 'Paid')
       .reduce((sum, e) => sum + e.amount_paid, 0);
-    const avgRating = 4.8; // Mock data
     const completionRate = enrollments.length > 0 
       ? (enrollments.filter(e => e.overall_status === 'Passed').length / enrollments.length) * 100 
       : 0;
@@ -106,7 +105,7 @@ const ProviderPortal: React.FC = () => {
       activeSessions,
       totalEnrollments,
       totalRevenue,
-      avgRating,
+      totalCourses: courses.length,
       completionRate
     };
   };
@@ -236,8 +235,8 @@ const ProviderPortal: React.FC = () => {
               <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-slate-600">Avg Rating</p>
-                    <p className="text-2xl font-bold text-slate-900">{stats.avgRating}</p>
+                    <p className="text-sm font-medium text-slate-600">Courses</p>
+                    <p className="text-2xl font-bold text-slate-900">{stats.totalCourses}</p>
                   </div>
                   <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
                     <TrendingUp className="h-6 w-6 text-yellow-600" />

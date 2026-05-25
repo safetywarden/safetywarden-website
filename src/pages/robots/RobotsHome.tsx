@@ -178,7 +178,7 @@ const RobotsHome: React.FC = () => {
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-4">Consistent Coverage</h3>
               <p className="text-slate-600">
-                24/7 monitoring without fatigue, breaks, or human error. Reliable patrol schedules.
+                Consistent monitoring with reliable patrol schedules and verifiable site observations.
               </p>
             </div>
             

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
 
 function getSessionId(): string {
   let sessionId = sessionStorage.getItem('page_session_id');
@@ -19,6 +18,7 @@ export function usePageTracking() {
   useEffect(() => {
     const trackPageView = async () => {
       try {
+        const { supabase } = await import('../lib/supabase');
         const { data: { user } } = await supabase.auth.getUser();
 
         const pageData = {
@@ -54,6 +54,7 @@ export function usePageStats(pagePath?: string) {
   useEffect(() => {
     const fetchStats = async () => {
       try {
+        const { supabase } = await import('../lib/supabase');
         const { data, error } = await supabase
           .from('page_stats')
           .select('total_views, unique_visitors, last_viewed_at')
@@ -72,26 +73,36 @@ export function usePageStats(pagePath?: string) {
 
     fetchStats();
 
-    const subscription = supabase
-      .channel(`page_stats_${path}`)
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'page_stats',
-          filter: `page_path=eq.${path}`,
-        },
-        (payload) => {
-          if (payload.new) {
-            setStats(payload.new as any);
+    let cancelled = false;
+    let subscription: { unsubscribe: () => void } | null = null;
+
+    import('../lib/supabase').then(({ supabase }) => {
+      if (cancelled) {
+        return;
+      }
+
+      subscription = supabase
+        .channel(`page_stats_${path}`)
+        .on(
+          'postgres_changes',
+          {
+            event: '*',
+            schema: 'public',
+            table: 'page_stats',
+            filter: `page_path=eq.${path}`,
+          },
+          (payload: { new: unknown }) => {
+            if (payload.new) {
+              setStats(payload.new as any);
+            }
           }
-        }
-      )
-      .subscribe();
+        )
+        .subscribe();
+    });
 
     return () => {
-      subscription.unsubscribe();
+      cancelled = true;
+      subscription?.unsubscribe();
     };
   }, [path]);
 

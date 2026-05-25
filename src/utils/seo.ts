@@ -340,9 +340,9 @@ export const seoPages = {
     keywords: 'safety compliance pricing, fire safety training cost, safety audit pricing, compliance software pricing, safety training packages'
   },
   about: {
-    title: 'About SafetyWarden™ - Digital Inspection Software & Safety Audit Platform',
-    description: 'Leading safety audit software and digital inspection platform. Learn how our mobile inspection app, compliance management software, and EHS audit tools help organizations achieve workplace safety excellence.',
-    keywords: 'safety warden,digital inspection software,safety audit software,inspection app,inspection checklist software,compliance management software,EHS audit software,mobile inspection app,digital audit platform,about SafetyWarden,workplace safety software,facility inspection software'
+    title: 'About SafetyWarden - Operational Compliance Governance Platform',
+    description: 'SafetyWarden helps industrial and infrastructure organizations digitize audits, inspections, evidence, CAPA and ESG/BRSR governance into one operational compliance platform.',
+    keywords: 'operational compliance governance, audit workflow software, evidence traceability, CAPA governance, regulatory intelligence platform, ESG BRSR governance, industrial compliance software, SafetyWarden'
   },
   contact: {
     title: 'Contact SafetyWarden.com - Get Expert Safety Compliance Help',
@@ -350,9 +350,9 @@ export const seoPages = {
     keywords: 'contact SafetyWarden, safety compliance consultation, fire safety experts contact, safety training inquiry, compliance help India'
   },
   resources: {
-    title: 'Free Safety Resources - Templates, Guides & Best Practices',
-    description: 'Free safety compliance resources including policy templates, drill logs, implementation guides, webinars, and case studies.',
-    keywords: 'free safety resources, fire safety templates, emergency drill templates, safety compliance guides, fire safety best practices, safety policy templates'
+    title: 'ESG Governance Software & BRSR Reporting Platform | SafetyWarden',
+    description: 'Evidence-backed ESG governance software and BRSR reporting platform for enterprise sustainability compliance, ESG audits, evidence management, CAPA and disclosure readiness.',
+    keywords: 'ESG governance software, BRSR reporting platform, sustainability compliance platform, ESG audit software, BRSR readiness, sustainability governance system, ESG evidence management, enterprise ESG reporting'
   }
 };
 

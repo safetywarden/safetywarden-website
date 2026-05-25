@@ -1,267 +1,319 @@
 import React from 'react';
-import { Users, Award, Globe, CheckCircle, ArrowRight } from 'lucide-react';
+import { ArrowRight, ClipboardCheck, Database, Eye, FileSearch, Layers, Map, ShieldCheck, UserRoundCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEOHead from '../components/SEO/SEOHead';
 import { seoPages } from '../utils/seo';
 
+const industryProblems = [
+  {
+    title: 'Fragmented compliance systems',
+    description: 'Audits, permits, inspections, evidence and corrective actions often sit across disconnected tools, folders and teams.'
+  },
+  {
+    title: 'Spreadsheet-driven audits',
+    description: 'Manual trackers make ownership, scoring, recurring findings and closure status difficult to govern across sites.'
+  },
+  {
+    title: 'Disconnected evidence',
+    description: 'Photos, documents, observations and approvals lose context when they are not linked to controls, findings and reports.'
+  },
+  {
+    title: 'Reactive CAPA workflows',
+    description: 'Corrective actions become follow-up lists instead of governed workflows with owners, due dates, verification and closure quality.'
+  },
+  {
+    title: 'Limited governance visibility',
+    description: 'Leadership teams need a reliable view of risk, readiness and accountability before audits and regulatory reviews.'
+  },
+  {
+    title: 'Audit readiness challenges',
+    description: 'Inspection preparation becomes effort-heavy when operating records are not continuously organized for review.'
+  }
+];
+
+const platformModules = [
+  'Audits & Inspections',
+  'Findings & CAPA',
+  'ESG/BRSR Reporting',
+  'Environmental Consents',
+  'Evidence Capture',
+  'Governance Reporting',
+  'Multi-site Visibility'
+];
+
+const philosophyItems = [
+  {
+    icon: ClipboardCheck,
+    title: 'Continuous compliance workflows',
+    description: 'Move from periodic preparation to repeatable inspection, review, escalation and closure routines.'
+  },
+  {
+    icon: FileSearch,
+    title: 'Audit intelligence',
+    description: 'Connect findings, controls, standards and evidence so audit outcomes become operational intelligence.'
+  },
+  {
+    icon: Database,
+    title: 'Evidence traceability',
+    description: 'Preserve the link between field observations, records, source documents, owners and reporting outputs.'
+  },
+  {
+    icon: Eye,
+    title: 'Corrective action visibility',
+    description: 'Track CAPA ownership, aging, verification and recurring issues across teams, assets and locations.'
+  }
+];
+
+const industries = [
+  'Manufacturing',
+  'Infrastructure',
+  'Industrial operations',
+  'Utilities',
+  'Engineering environments',
+  'Energy and process sites',
+  'Warehousing and logistics',
+  'Large multi-site enterprises'
+];
+
 const About: React.FC = () => {
-  const stats = [
-    { number: '500+', label: 'Organizations served' },
-    { number: '50,000+', label: 'Employees trained' },
-    { number: '95%', label: 'Compliance success rate' },
-    { number: '24/7', label: 'Support availability' }
-  ];
-
-  const team = [
-    {
-      name: 'Shaw Alem',
-      role: 'Founder & CEO',
-      background: 'Shaw Alem, Founder & CEO of SafetyWarden™, a platform that unifies digital audits, training, staffing, and certified vendors to deliver measurable compliance results. With 25+ years in HSSE across India and the Middle East, he has led safety achieving 100% regulatory compliance and major risk reduction. A mechanical engineer with an M.E. in Industrial Safety (NIT Trichy) and an MBA from Strathclyde University, he builds high-performing teams and practical, tech-enabled safety solutions..',
-      image: '/Profile pic.jpg'
-    },
-    {
-      name: 'Asha',
-      role: 'Head of Signapore Operations',
-      background: 'specialized in enterprise safety software',
-      image: null
-    },
-    {
-      name: 'Ahmed Al-Rashid',
-      role: 'Head of GCC Operations',
-      background: 'Former UAE Civil Defense consultant, expert in Middle East regulations',
-      image: null
-    }
-  ];
-
-  const values = [
-    {
-      icon: <img src="/icon.png" alt="Safety First" className="h-8 w-auto" />,
-      title: 'Safety First',
-      description: 'Every decision we make prioritizes the safety and well-being of people in workplaces.'
-    },
-    {
-      icon: <Users className="h-8 w-8 text-emerald-600" />,
-      title: 'Customer Success',
-      description: 'We measure our success by how effectively we help our customers achieve compliance.'
-    },
-    {
-      icon: <Award className="h-8 w-8 text-orange-600" />,
-      title: 'Excellence',
-      description: 'We continuously improve our platform and services to exceed industry standards.'
-    },
-    {
-      icon: <Globe className="h-8 w-8 text-purple-600" />,
-      title: 'Innovation',
-      description: 'We leverage technology to make safety compliance simple, efficient, and accessible.'
-    }
-  ];
-
   return (
-    <div className="py-12">
+    <div className="bg-slate-50 text-slate-900">
       <SEOHead
         title={seoPages.about.title}
         description={seoPages.about.description}
         keywords={seoPages.about.keywords}
         canonicalUrl="https://safetywarden.com/about"
       />
-      
-      {/* Header */}
-      <section className="bg-gradient-to-br from-blue-900 to-slate-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Leading Safety Audit Software & Digital Inspection Platform
+
+      <section className="bg-slate-950 text-white">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-20">
+          <div className="flex flex-col justify-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-sky-300">
+              About SafetyWarden
+            </p>
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+              Built for Operational Compliance Governance.
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
-              SafetyWarden is a comprehensive compliance management software helping organizations across India and GCC achieve workplace safety excellence. Our digital inspection software, mobile inspection app, and EHS audit tools simplify safety compliance.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+              SafetyWarden helps industrial and infrastructure organizations digitize audits, inspections, evidence, CAPA and ESG/BRSR governance into one operational compliance platform.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-blue-900 mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-slate-600">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mission */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Our Mission</h2>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                to="/features"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-orange-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
+              >
+                View Platform
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center rounded-lg border border-slate-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white hover:text-slate-950"
+              >
+                Talk to SafetyWarden
+              </Link>
             </div>
-            
-            <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm">
-              <p className="text-xl text-slate-700 leading-relaxed mb-6">
-                Traditional paper-based safety inspections are complex, time-consuming, and ineffective.
-                Organizations struggle with manual inspection checklists, scattered documentation, and
-                the constant challenge of workplace safety compliance.
-              </p>
+          </div>
 
-              <p className="text-xl text-slate-700 leading-relaxed mb-6">
-                SafetyWarden was founded to transform this reality with digital inspection software.
-                Our safety audit software, mobile inspection app, and comprehensive compliance management platform
-                make facility inspection and EHS audits accessible, efficient, and reliable for organizations of all sizes.
-              </p>
+          <div className="rounded-lg border border-slate-800 bg-slate-900/90 p-5 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div>
+                <p className="text-sm font-semibold text-white">Governance architecture</p>
+                <p className="text-xs text-slate-400">Audit workflow to evidence-backed reporting</p>
+              </div>
+              <ShieldCheck className="h-6 w-6 text-sky-300" />
+            </div>
 
-              <p className="text-xl text-slate-700 leading-relaxed">
-                Through our integrated digital audit platform—combining inspection checklist software,
-                inspection reporting tools, and safety compliance software—we're helping hundreds of
-                organizations protect their people, achieve regulatory compliance, and build a culture of safety excellence.
-              </p>
+            <div className="mt-5 space-y-3">
+              {[
+                ['01', 'Plan audits and regulatory checks'],
+                ['02', 'Capture field observations and evidence'],
+                ['03', 'Raise findings and assign CAPA'],
+                ['04', 'Verify closure and preserve traceability'],
+                ['05', 'Report readiness, risk and governance status']
+              ].map(([number, label]) => (
+                <div key={number} className="grid grid-cols-[48px_1fr] items-center gap-3 rounded-lg border border-slate-800 bg-slate-950 p-4">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-800 text-xs font-semibold text-sky-300">
+                    {number}
+                  </span>
+                  <span className="text-sm font-semibold text-slate-100">{label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Our Values</h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              The principles that guide everything we do
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-700">Industry problem</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+              Compliance operations break down when execution, evidence and governance are separated.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-600">
+              Large operating environments need more than inspection forms. They need a governed system that keeps operational records, accountability and audit readiness connected.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
-              <div key={index} className="bg-slate-50 rounded-xl p-8">
-                <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center mb-6">
-                  {value.icon}
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4">{value.title}</h3>
-                <p className="text-slate-600">{value.description}</p>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {industryProblems.map((problem) => (
+              <div key={problem.title} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                <h3 className="text-base font-semibold text-slate-950">{problem.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{problem.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Leadership Team</h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Industry experts with deep experience in safety, compliance, and technology
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <div key={index} className="bg-white rounded-xl p-8 shadow-sm text-center">
-                {member.image && (
-                  <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-6">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-                {!member.image && (
-                  <div className="w-24 h-24 rounded-full bg-slate-200 flex items-center justify-center mx-auto mb-6">
-                    <Users className="h-12 w-12 text-slate-400" />
-                  </div>
-                )}
-                <h3 className="text-xl font-bold text-slate-900 mb-2">{member.name}</h3>
-                <p className="text-orange-600 font-medium mb-4">{member.role}</p>
-                <p className="text-sm text-slate-600">{member.background}</p>
+      <section className="bg-slate-100 py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8 lg:items-center">
+          <div className="rounded-lg border border-slate-300 bg-white p-6 shadow-sm">
+            <div className="flex items-center gap-4">
+              <div className="h-20 w-20 overflow-hidden rounded-lg bg-slate-200">
+                <img
+                  src="/Profile pic.jpg"
+                  alt="Shaw Alem"
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
               </div>
-            ))}
+              <div>
+                <h2 className="text-xl font-semibold text-slate-950">Shaw Alem</h2>
+                <p className="mt-1 text-sm font-medium text-orange-700">Founder & CEO</p>
+              </div>
+            </div>
+            <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
+              <p className="text-sm font-semibold text-slate-950">Domain foundation</p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Fire, safety, industrial risk and compliance systems across India and GCC operating environments.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-700">Founder insight</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+              Built from operational exposure, not abstract compliance theory.
+            </h2>
+            <div className="mt-5 space-y-4 text-base leading-7 text-slate-600">
+              <p>
+                SafetyWarden is shaped by 30+ years of founder experience in fire, safety, industrial risk and compliance systems, with practical exposure across India and GCC operating environments.
+              </p>
+              <p>
+                The platform reflects a clear field insight: compliance gaps usually do not come from lack of intent. They come from disconnected execution, weak evidence control, delayed CAPA and limited governance visibility.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Coverage */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="bg-slate-950 py-16 text-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Regional Expertise
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-sky-300">Platform philosophy</p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+                Inspection-ready by design, not by effort.
               </h2>
-              <p className="text-xl text-slate-600 mb-8">
-                We understand the unique regulatory landscape of India and the GCC region, 
-                providing localized solutions that meet specific compliance requirements.
+              <p className="mt-4 text-base leading-7 text-slate-300">
+                SafetyWarden is designed around continuous compliance workflows, audit intelligence, evidence traceability and corrective action visibility.
               </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-6 w-6 text-emerald-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-slate-900 mb-1">India Compliance</h3>
-                    <p className="text-slate-600">NBC 2016, State Fire Service regulations, Factory Act requirements</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-6 w-6 text-emerald-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-slate-900 mb-1">GCC Standards</h3>
-                    <p className="text-slate-600">UAE Fire Code, Saudi Building Code, NFPA adaptations</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-6 w-6 text-emerald-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-slate-900 mb-1">International Best Practices</h3>
-                    <p className="text-slate-600">NFPA, IFC, and ISO standards integration</p>
-                  </div>
-                </div>
-              </div>
             </div>
-            
-            <div className="bg-slate-100 rounded-2xl p-8 h-80 flex items-center justify-center">
-              <div className="text-center">
-                <Globe className="h-16 w-16 text-blue-600 mx-auto mb-4" />
-                <p className="text-slate-600">
-                  Coverage map visualization would go here
-                </p>
-              </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {philosophyItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.title} className="rounded-lg border border-slate-800 bg-slate-900 p-5">
+                    <Icon className="h-6 w-6 text-sky-300" />
+                    <h3 className="mt-4 text-base font-semibold text-white">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">{item.description}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Careers CTA */}
-      <section className="py-16 bg-gradient-to-r from-blue-900 to-slate-800 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Join Our Mission
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-700">Platform modules</p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+                Structured capabilities for enterprise compliance teams.
+              </h2>
+              <p className="mt-4 text-base leading-7 text-slate-600">
+                The platform connects daily execution with governance reporting so compliance leaders can manage readiness across locations, standards and functions.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {platformModules.map((module) => (
+                <div key={module} className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
+                  <Layers className="h-5 w-5 flex-shrink-0 text-orange-700" />
+                  <span className="text-sm font-semibold text-slate-950">{module}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-100 py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8 lg:items-center">
+          <div className="rounded-lg border border-slate-300 bg-white p-5">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {industries.map((industry) => (
+                <div key={industry} className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-semibold text-slate-950">
+                  {industry}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-700">Target industries</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+              Designed for industrial and infrastructure compliance complexity.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-600">
+              SafetyWarden supports operating environments where audits, evidence, regulatory obligations and CAPA governance need to work across sites, assets, shifts and leadership layers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-slate-950 text-white">
+            <Map className="h-6 w-6" />
+          </div>
+          <h2 className="mt-6 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+            A governance platform for operational reality.
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            Help us make workplace safety simple and effective for organizations everywhere
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-slate-600">
+            SafetyWarden brings regulatory intelligence, audit workflows, evidence traceability and governance reporting into a system built for the way industrial compliance actually operates.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
               to="/contact"
-              className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors inline-flex items-center justify-center space-x-2"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-orange-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
             >
-              <span>View Open Positions</span>
-              <ArrowRight className="h-5 w-5" />
+              Request Demo
+              <UserRoundCheck className="h-4 w-4" />
             </Link>
             <Link
-              to="/contact"
-              className="border-2 border-white text-white hover:bg-white hover:text-slate-800 px-8 py-4 rounded-xl font-semibold text-lg transition-colors"
+              to="/resources"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100"
             >
-              Contact Us
+              ESG/BRSR Governance
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

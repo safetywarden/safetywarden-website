@@ -190,7 +190,7 @@ const CertificateVerify: React.FC = () => {
             <p>• All SafetyWarden certificates are digitally signed and tamper-proof</p>
             <p>• QR codes provide instant verification without internet dependency</p>
             <p>• Certificate data is stored securely with blockchain-level integrity</p>
-            <p>• Employers can verify certificates 24/7 using this verification system</p>
+            <p>• Employers can verify certificates online using this verification system</p>
           </div>
         </div>
 

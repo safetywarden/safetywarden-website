@@ -205,7 +205,7 @@ const VendorDirectory: React.FC = () => {
             Want to Become a Vendor?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join our marketplace and reach thousands of buyers across India and GCC
+            Join our marketplace and respond to structured safety equipment RFQs across India and GCC
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

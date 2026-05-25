@@ -140,7 +140,7 @@ const Solutions: React.FC = () => {
               </div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">Enterprise Scale</h3>
               <p className="text-sm text-slate-600">
-                Designed for organizations with thousands of employees across multiple sites
+                Designed for organizations managing distributed teams, sites and operational risk
               </p>
             </div>
 
