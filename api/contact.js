@@ -1,7 +1,5 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({
@@ -11,6 +9,23 @@ export default async function handler(req, res) {
   }
 
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+    const contactEmail = process.env.CONTACT_EMAIL;
+    const fromEmail = process.env.RESEND_FROM_EMAIL;
+
+    if (!apiKey || !contactEmail || !fromEmail) {
+      console.error("Missing email env vars", {
+        hasApiKey: Boolean(apiKey),
+        hasContactEmail: Boolean(contactEmail),
+        hasFromEmail: Boolean(fromEmail)
+      });
+
+      return res.status(500).json({
+        success: false,
+        message: "Email service is not configured"
+      });
+    }
+
     const { name, email, company, phone, message } = req.body || {};
 
     if (!name || !email || !message) {
@@ -20,17 +35,12 @@ export default async function handler(req, res) {
       });
     }
 
-    if (!process.env.RESEND_API_KEY || !process.env.CONTACT_EMAIL || !process.env.RESEND_FROM_EMAIL) {
-      return res.status(500).json({
-        success: false,
-        message: "Email service is not configured"
-      });
-    }
+    const resend = new Resend(apiKey);
 
-    await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL,
-      to: process.env.CONTACT_EMAIL,
-      replyTo: email,
+    const result = await resend.emails.send({
+      from: fromEmail,
+      to: contactEmail,
+      reply_to: email,
       subject: "New SafetyWarden Website Message",
       html: `
         <h2>New SafetyWarden Website Message</h2>
@@ -46,14 +56,14 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      message: "Message sent successfully"
+      id: result?.data?.id || null
     });
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error("Contact API failed:", error);
 
     return res.status(500).json({
       success: false,
-      message: "Failed to send message"
+      message: error?.message || "Failed to send message"
     });
   }
 }
