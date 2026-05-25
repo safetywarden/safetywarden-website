@@ -13,17 +13,21 @@ export type ContactFormResult = {
 };
 
 export const submitContactForm = async (payload: ContactFormPayload): Promise<ContactFormResult> => {
-  const endpoint = import.meta.env.VITE_CONTACT_API_URL || '/api/contact';
-
   let response: Response;
 
   try {
-    response = await fetch(endpoint, {
+    response = await fetch('/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({
+        name: payload.name,
+        email: payload.email,
+        company: payload.company,
+        phone: payload.phone,
+        message: payload.message,
+      }),
     });
   } catch (error) {
     if (import.meta.env.DEV) {
@@ -36,9 +40,9 @@ export const submitContactForm = async (payload: ContactFormPayload): Promise<Co
     };
   }
 
-  const result = await response.json().catch(() => null) as ContactFormResult | null;
+  const data = await response.json().catch(() => null) as ContactFormResult | null;
 
-  if (!response.ok || !result?.success) {
+  if (!response.ok || !data?.success) {
     if (response.status === 404) {
       return {
         success: false,
@@ -48,7 +52,7 @@ export const submitContactForm = async (payload: ContactFormPayload): Promise<Co
 
     return {
       success: false,
-      error: result?.message || result?.error || 'We could not send your message. Please try again.',
+      error: data?.message || data?.error || 'Failed to send message',
     };
   }
 
