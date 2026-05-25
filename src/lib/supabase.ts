@@ -13,7 +13,9 @@ const isSupabaseConfigured = supabaseUrl &&
   supabaseUrl.startsWith('https://');
 
 if (!isSupabaseConfigured) {
-  console.warn('Supabase not configured. Using demo mode.');
+  if (import.meta.env.DEV) {
+    console.warn('Supabase not configured. Using demo mode.');
+  }
   // Create a mock client for demo purposes
   const mockClient = {
     from: () => ({

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
-import { FormData } from '../types';
+import type { FormData } from '../types';
 import { trackFormSubmission, trackDemoRequest } from '../utils/analytics';
+import { submitContactForm } from '../utils/contactForm';
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -22,21 +23,44 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [website, setWebsite] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Track demo request
-    trackDemoRequest('modal');
-    trackFormSubmission('demo_request');
-    
-    alert('Thank you! We\'ll contact you within 24 hours to schedule your demo.');
-    setIsSubmitting(false);
-    onClose();
+    setSubmitError('');
+
+    try {
+      const result = await submitContactForm({
+        ...formData,
+        message: formData.message || 'Demo request submitted from the SafetyWarden website.',
+        sourcePage: window.location.pathname,
+        formType: 'demo',
+        website,
+      });
+
+      if (!result.success) {
+        setSubmitError(result.error || 'We could not submit your demo request. Please try again.');
+        if (import.meta.env.DEV) {
+          console.error('SafetyWarden demo request failed:', result.error);
+        }
+        return;
+      }
+
+      trackDemoRequest('modal');
+      trackFormSubmission('demo_request');
+      setWebsite('');
+      alert('Thank you. Your demo request was sent and our team will contact you shortly.');
+      onClose();
+    } catch (error) {
+      setSubmitError('We could not submit your demo request. Please try again or email hello@safetywarden.com.');
+      if (import.meta.env.DEV) {
+        console.error('SafetyWarden demo request failed:', error);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -63,6 +87,19 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         </div>
         
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="demo-website">Website</label>
+            <input
+              type="text"
+              id="demo-website"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={website}
+              onChange={(event) => setWebsite(event.target.value)}
+            />
+          </div>
+
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">
               Full Name *
@@ -179,6 +216,12 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
           >
             {isSubmitting ? 'Submitting...' : 'Schedule Demo'}
           </button>
+
+          {submitError && (
+            <p className="text-sm text-red-700" role="alert">
+              {submitError}
+            </p>
+          )}
         </form>
       </div>
     </div>

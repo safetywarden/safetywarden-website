@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FormData } from '../types';
+import type { FormData } from '../types';
 import { trackFormSubmission } from '../utils/analytics';
+import { submitContactForm } from '../utils/contactForm';
 
 interface LeadFormProps {
   title?: string;
@@ -29,6 +30,9 @@ const LeadForm: React.FC<LeadFormProps> = ({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [phoneError, setPhoneError] = useState('');
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
+  const [website, setWebsite] = useState('');
 
   const validateIndianPhone = (phone: string) => {
     const phoneRegex = /^(\+91|91|0)?[6-9]\d{9}$/;
@@ -46,28 +50,51 @@ const LeadForm: React.FC<LeadFormProps> = ({
     setPhoneError('');
     
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Track form submission
-    trackFormSubmission('lead_form');
-    
-    alert('Thank you for your interest! We\'ll contact you within 24 hours.');
-    setIsSubmitting(false);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      city: '',
-      employees: '',
-      message: '',
-      bookDemo: false,
-      consent: false
-    });
+    setSubmitStatus('idle');
+    setSubmitMessage('');
+
+    try {
+      const result = await submitContactForm({
+        ...formData,
+        sourcePage: window.location.pathname,
+        formType: formData.bookDemo ? 'demo' : 'contact',
+        website,
+      });
+
+      if (!result.success) {
+        setSubmitStatus('error');
+        setSubmitMessage(result.error || 'We could not send your message. Please try again.');
+        if (import.meta.env.DEV) {
+          console.error('SafetyWarden lead form submission failed:', result.error);
+        }
+        return;
+      }
+
+      trackFormSubmission('lead_form');
+      setSubmitStatus('success');
+      setSubmitMessage('Thank you. Your message was sent and our team will contact you shortly.');
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        city: '',
+        employees: '',
+        message: '',
+        bookDemo: false,
+        consent: false
+      });
+      setWebsite('');
+    } catch (error) {
+      setSubmitStatus('error');
+      setSubmitMessage('We could not send your message. Please try again or email hello@safetywarden.com.');
+      if (import.meta.env.DEV) {
+        console.error('SafetyWarden lead form request failed:', error);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -91,6 +118,19 @@ const LeadForm: React.FC<LeadFormProps> = ({
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="website">Website</label>
+          <input
+            type="text"
+            id="website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={website}
+            onChange={(event) => setWebsite(event.target.value)}
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">
@@ -199,11 +239,12 @@ const LeadForm: React.FC<LeadFormProps> = ({
         
         <div>
           <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">
-            Message
+            Message *
           </label>
           <textarea
             id="message"
             name="message"
+            required
             rows={3}
             value={formData.message}
             onChange={handleChange}
@@ -250,6 +291,17 @@ const LeadForm: React.FC<LeadFormProps> = ({
         >
           {isSubmitting ? 'Sending...' : ctaText}
         </button>
+
+        {submitMessage && (
+          <p
+            className={`text-sm ${
+              submitStatus === 'success' ? 'text-emerald-700' : 'text-red-700'
+            }`}
+            role={submitStatus === 'error' ? 'alert' : 'status'}
+          >
+            {submitMessage}
+          </p>
+        )}
       </form>
     </div>
   );

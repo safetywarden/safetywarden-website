@@ -95,6 +95,10 @@ function DeferredPageTracker() {
   const location = useLocation();
 
   useEffect(() => {
+    if (import.meta.env.VITE_ENABLE_SUPABASE_ANALYTICS !== 'true') {
+      return;
+    }
+
     if (location.pathname === '/') {
       return;
     }

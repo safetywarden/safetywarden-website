@@ -1,42 +1,69 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-function getSessionId(): string {
-  let sessionId = sessionStorage.getItem('page_session_id');
+const isSupabaseAnalyticsEnabled = () =>
+  import.meta.env.VITE_ENABLE_SUPABASE_ANALYTICS === 'true';
 
-  if (!sessionId) {
-    sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    sessionStorage.setItem('page_session_id', sessionId);
+const scheduleIdle = (callback: () => void) => {
+  let idleId: number | null = null;
+  const timer = window.setTimeout(() => {
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(callback, { timeout: 10000 });
+      return;
+    }
+
+    callback();
+  }, 3000);
+
+  return () => {
+    window.clearTimeout(timer);
+    if (idleId !== null) {
+      window.cancelIdleCallback(idleId);
+    }
+  };
+};
+
+const warnInDevelopment = (message: string, details?: unknown) => {
+  if (import.meta.env.DEV) {
+    console.warn(message, details);
   }
-
-  return sessionId;
-}
+};
 
 export function usePageTracking() {
   const location = useLocation();
 
   useEffect(() => {
-    const trackPageView = async () => {
+    if (!isSupabaseAnalyticsEnabled()) {
+      return;
+    }
+
+    const cleanup = scheduleIdle(async () => {
       try {
         const { supabase } = await import('../lib/supabase');
-        const { data: { user } } = await supabase.auth.getUser();
 
         const pageData = {
-          page_path: location.pathname,
-          page_title: document.title,
+          path: location.pathname,
+          title: document.title,
           referrer: document.referrer || null,
           user_agent: navigator.userAgent,
-          session_id: getSessionId(),
-          user_id: user?.id || null,
+          created_at: new Date().toISOString(),
         };
 
-        await supabase.from('page_views').insert(pageData);
-      } catch (error) {
-        console.error('Error tracking page view:', error);
-      }
-    };
+        const { error } = await supabase.from('page_views').insert(pageData);
 
-    trackPageView();
+        if (error) {
+          warnInDevelopment('Supabase page_views insert failed.', {
+            table: 'page_views',
+            payloadKeys: Object.keys(pageData),
+            error,
+          });
+        }
+      } catch (error) {
+        warnInDevelopment('Supabase page view tracking failed.', error);
+      }
+    });
+
+    return cleanup;
   }, [location.pathname]);
 }
 
@@ -52,6 +79,11 @@ export function usePageStats(pagePath?: string) {
   const path = pagePath || location.pathname;
 
   useEffect(() => {
+    if (!isSupabaseAnalyticsEnabled()) {
+      setLoading(false);
+      return;
+    }
+
     const fetchStats = async () => {
       try {
         const { supabase } = await import('../lib/supabase');
@@ -65,7 +97,7 @@ export function usePageStats(pagePath?: string) {
           setStats(data);
         }
       } catch (error) {
-        console.error('Error fetching page stats:', error);
+        warnInDevelopment('Supabase page stats fetch failed.', error);
       } finally {
         setLoading(false);
       }
@@ -76,29 +108,33 @@ export function usePageStats(pagePath?: string) {
     let cancelled = false;
     let subscription: { unsubscribe: () => void } | null = null;
 
-    import('../lib/supabase').then(({ supabase }) => {
-      if (cancelled) {
-        return;
-      }
+    import('../lib/supabase')
+      .then(({ supabase }) => {
+        if (cancelled) {
+          return;
+        }
 
-      subscription = supabase
-        .channel(`page_stats_${path}`)
-        .on(
-          'postgres_changes',
-          {
-            event: '*',
-            schema: 'public',
-            table: 'page_stats',
-            filter: `page_path=eq.${path}`,
-          },
-          (payload: { new: unknown }) => {
-            if (payload.new) {
-              setStats(payload.new as any);
+        subscription = supabase
+          .channel(`page_stats_${path}`)
+          .on(
+            'postgres_changes',
+            {
+              event: '*',
+              schema: 'public',
+              table: 'page_stats',
+              filter: `page_path=eq.${path}`,
+            },
+            (payload: { new: unknown }) => {
+              if (payload.new) {
+                setStats(payload.new as any);
+              }
             }
-          }
-        )
-        .subscribe();
-    });
+          )
+          .subscribe();
+      })
+      .catch((error) => {
+        warnInDevelopment('Supabase page stats subscription failed.', error);
+      });
 
     return () => {
       cancelled = true;
