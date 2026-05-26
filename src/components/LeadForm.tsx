@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import type { FormData } from '../types';
-import { trackFormSubmission } from '../utils/analytics';
-import { submitContactForm } from '../utils/contactForm';
+import React from 'react';
+import { Calendar, Mail, MessageCircle } from 'lucide-react';
+import { trackDemoRequest, trackFormSubmission, trackWhatsAppClick } from '../utils/analytics';
+import { emailLink, meetLink, whatsappLink } from '../utils/directOutreach';
 
 interface LeadFormProps {
   title?: string;
@@ -11,103 +11,15 @@ interface LeadFormProps {
 }
 
 const LeadForm: React.FC<LeadFormProps> = ({
-  title = 'Get Started Today',
-  subtitle = 'Contact us to learn more about this solution',
-  ctaText = 'Send Message',
-  showBookDemo = true
+  title = 'Connect with SafetyWarden',
+  subtitle = 'Choose a direct outreach channel to discuss your compliance operations.',
 }) => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    city: '',
-    employees: '',
-    message: '',
-    bookDemo: false,
-    consent: false
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [phoneError, setPhoneError] = useState('');
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [submitMessage, setSubmitMessage] = useState('');
-  const [website, setWebsite] = useState('');
-
-  const validateIndianPhone = (phone: string) => {
-    const phoneRegex = /^(\+91|91|0)?[6-9]\d{9}$/;
-    return phoneRegex.test(phone.replace(/\s|-/g, ''));
+  const handleMeetClick = () => {
+    trackDemoRequest('direct_outreach');
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Validate phone number
-    if (!validateIndianPhone(formData.phone)) {
-      setPhoneError('Please enter a valid Indian phone number');
-      return;
-    }
-    setPhoneError('');
-    
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-    setSubmitMessage('');
-
-    try {
-      const result = await submitContactForm({
-        ...formData,
-        sourcePage: window.location.pathname,
-        formType: formData.bookDemo ? 'demo' : 'contact',
-        website,
-      });
-
-      if (!result.success) {
-        setSubmitStatus('error');
-        setSubmitMessage(result.error || 'We could not send your message. Please try again.');
-        if (import.meta.env.DEV) {
-          console.error('SafetyWarden lead form submission failed:', result.error);
-        }
-        return;
-      }
-
-      trackFormSubmission('lead_form');
-      setSubmitStatus('success');
-      setSubmitMessage('Thank you. Your message was sent and our team will contact you shortly.');
-
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        city: '',
-        employees: '',
-        message: '',
-        bookDemo: false,
-        consent: false
-      });
-      setWebsite('');
-    } catch (error) {
-      setSubmitStatus('error');
-      setSubmitMessage('We could not send your message. Please try again or email hello@safetywarden.com.');
-      if (import.meta.env.DEV) {
-        console.error('SafetyWarden lead form request failed:', error);
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
-    }));
-    
-    // Clear phone error when user types
-    if (name === 'phone' && phoneError) {
-      setPhoneError('');
-    }
+  const handleEmailClick = () => {
+    trackFormSubmission('direct_email');
   };
 
   return (
@@ -117,192 +29,44 @@ const LeadForm: React.FC<LeadFormProps> = ({
         <p className="text-slate-600">{subtitle}</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="hidden" aria-hidden="true">
-          <label htmlFor="website">Website</label>
-          <input
-            type="text"
-            id="website"
-            name="website"
-            tabIndex={-1}
-            autoComplete="off"
-            value={website}
-            onChange={(event) => setWebsite(event.target.value)}
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">
-              Full Name *
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-            />
-          </div>
-          
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">
-              Work Email *
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-            />
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1">
-              Phone / WhatsApp *
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="+91 9876543210"
-              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors ${
-                phoneError ? 'border-red-500' : 'border-slate-300'
-              }`}
-            />
-            {phoneError && (
-              <p className="text-red-600 text-xs mt-1">{phoneError}</p>
-            )}
-          </div>
-          
-          <div>
-            <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-1">
-              Company *
-            </label>
-            <input
-              type="text"
-              id="company"
-              name="company"
-              required
-              value={formData.company}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-            />
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="city" className="block text-sm font-medium text-slate-700 mb-1">
-              City *
-            </label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              required
-              value={formData.city}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-            />
-          </div>
-          
-          <div>
-            <label htmlFor="employees" className="block text-sm font-medium text-slate-700 mb-1">
-              Number of Employees
-            </label>
-            <select
-              id="employees"
-              name="employees"
-              value={formData.employees}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-            >
-              <option value="">Select range</option>
-              <option value="1-50">1-50</option>
-              <option value="51-200">51-200</option>
-              <option value="201-1000">201-1000</option>
-              <option value="1000+">1000+</option>
-            </select>
-          </div>
-        </div>
-        
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">
-            Message *
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            required
-            rows={3}
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Tell us about your safety requirements..."
-            className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-          />
-        </div>
-        
-        {showBookDemo && (
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="bookDemo"
-              name="bookDemo"
-              checked={formData.bookDemo}
-              onChange={handleChange}
-              className="rounded border-slate-300 text-orange-600 focus:ring-orange-500"
-            />
-            <label htmlFor="bookDemo" className="text-sm text-slate-700">
-              Book a demo call
-            </label>
-          </div>
-        )}
-        
-        <div className="flex items-start space-x-2">
-          <input
-            type="checkbox"
-            id="consent"
-            name="consent"
-            required
-            checked={formData.consent}
-            onChange={handleChange}
-            className="mt-1 rounded border-slate-300 text-orange-600 focus:ring-orange-500"
-          />
-          <label htmlFor="consent" className="text-sm text-slate-600">
-            I agree to the Terms & Conditions and Privacy Policy. I consent to receive communications about SafetyWarden.com services. *
-          </label>
-        </div>
-        
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full bg-orange-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-orange-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+      <div className="grid grid-cols-1 gap-3">
+        <a
+          href={meetLink}
+          onClick={handleMeetClick}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3 text-slate-900 transition-colors hover:border-orange-300 hover:bg-orange-50"
         >
-          {isSubmitting ? 'Sending...' : ctaText}
-        </button>
+          <span className="flex items-center gap-3 font-semibold">
+            <Calendar className="h-5 w-5 text-orange-600" />
+            Schedule a Google Meet
+          </span>
+        </a>
 
-        {submitMessage && (
-          <p
-            className={`text-sm ${
-              submitStatus === 'success' ? 'text-emerald-700' : 'text-red-700'
-            }`}
-            role={submitStatus === 'error' ? 'alert' : 'status'}
-          >
-            {submitMessage}
-          </p>
-        )}
-      </form>
+        <a
+          href={whatsappLink}
+          onClick={trackWhatsAppClick}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3 text-slate-900 transition-colors hover:border-emerald-300 hover:bg-emerald-50"
+        >
+          <span className="flex items-center gap-3 font-semibold">
+            <MessageCircle className="h-5 w-5 text-emerald-600" />
+            Chat on WhatsApp
+          </span>
+        </a>
+
+        <a
+          href={emailLink}
+          onClick={handleEmailClick}
+          className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3 text-slate-900 transition-colors hover:border-blue-300 hover:bg-blue-50"
+        >
+          <span className="flex items-center gap-3 font-semibold">
+            <Mail className="h-5 w-5 text-blue-600" />
+            Email SafetyWarden
+          </span>
+        </a>
+      </div>
     </div>
   );
 };

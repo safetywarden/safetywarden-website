@@ -65,6 +65,8 @@ const Header: React.FC = () => {
           <div className="hidden flex-shrink-0 items-center gap-3 lg:flex xl:gap-5">
             <a
               href="https://app.safetywarden.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 xl:px-4 xl:text-base"
               onClick={handleLoginClick}
             >
@@ -115,7 +117,12 @@ const Header: React.FC = () => {
             <div className="mt-6 px-4 space-y-3">
               <a
                 href="https://app.safetywarden.com"
-                onClick={() => setIsMenuOpen(false)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  handleLoginClick();
+                  setIsMenuOpen(false);
+                }}
                 className="block rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 text-center hover:bg-slate-50"
               >
                 App Login

@@ -27,7 +27,16 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-semibold text-white mb-4">Connect</h4>
             <ul className="space-y-3 text-sm text-slate-300">
-              <li><a href="https://app.safetywarden.com" className="hover:text-white transition-colors">App Login</a></li>
+              <li>
+                <a
+                  href="https://app.safetywarden.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  App Login
+                </a>
+              </li>
               <li><a href="mailto:hello@safetywarden.com" className="hover:text-white transition-colors">hello@safetywarden.com</a></li>
               <li><span className="text-slate-400">Bangalore, India</span></li>
             </ul>
@@ -36,7 +45,9 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-slate-800 mt-10 pt-8 text-sm text-slate-400 flex flex-col md:flex-row justify-between gap-4">
           <span>Enterprise compliance operations platform</span>
-          <span>© {new Date().getFullYear()} SafetyWarden. All rights reserved.</span>
+          <span>
+            © {new Date().getFullYear()} SafetyWarden. A product initiative of BCONZ International OPC Private Limited, Bengaluru, India.
+          </span>
         </div>
       </div>
     </footer>
