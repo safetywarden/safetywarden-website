@@ -1,9 +1,10 @@
 import React from 'react';
 import { ArrowRight, BarChart3, CheckCircle, ClipboardCheck, Database, FileSearch, Gauge, Layers, ShieldCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SEOHead from '../components/SEO/SEOHead';
 import StructuredData from '../components/SEO/StructuredData';
 import { generateFAQSchema, seoPages } from '../utils/seo';
+import { trackCtaClick, trackDemoRequest } from '../utils/analytics';
 
 const challengeItems = [
   {
@@ -87,13 +88,16 @@ const faqData = [
 ];
 
 const Resources: React.FC = () => {
+  const location = useLocation();
+  const canonicalPath = location.pathname === '/esg-brsr' ? '/esg-brsr' : '/resources';
+
   return (
     <div className="bg-slate-50 text-slate-900">
       <SEOHead
         title={seoPages.resources.title}
         description={seoPages.resources.description}
         keywords={seoPages.resources.keywords}
-        canonicalUrl="https://safetywarden.com/resources"
+        canonicalUrl={`https://www.safetywarden.com${canonicalPath}`}
       />
 
       <StructuredData data={generateFAQSchema(faqData)} />
@@ -120,6 +124,10 @@ const Resources: React.FC = () => {
               </a>
               <Link
                 to="/contact"
+                onClick={() => {
+                  trackDemoRequest('esg_brsr_hero');
+                  trackCtaClick('request_demo', 'esg_brsr_hero');
+                }}
                 className="inline-flex items-center justify-center rounded-lg border border-slate-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white hover:text-slate-950"
               >
                 Request Demo
@@ -198,6 +206,38 @@ const Resources: React.FC = () => {
                 <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-950 py-14 text-white sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-sky-300">
+              Operational workflow
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              ESG and BRSR governance has a dedicated workflow path.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-300">
+              Review how SafetyWarden connects operational data collection, ESG indicator mapping, evidence alignment, governance review and BRSR readiness reporting.
+            </p>
+          </div>
+
+          <div className="border border-slate-800 bg-slate-900 p-5">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {['Data collection', 'Indicator mapping', 'Evidence alignment', 'Governance review'].map((item) => (
+                <div key={item} className="border border-slate-800 bg-slate-950 px-4 py-3 text-sm font-semibold text-slate-100">
+                  {item}
+                </div>
+              ))}
+            </div>
+            <Link
+              to="/workflows/esg-brsr"
+              className="mt-5 inline-flex items-center justify-center bg-orange-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
+            >
+              View ESG/BRSR Workflow
+            </Link>
           </div>
         </div>
       </section>
@@ -334,6 +374,10 @@ const Resources: React.FC = () => {
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
               to="/contact"
+              onClick={() => {
+                trackDemoRequest('esg_brsr_final_cta');
+                trackCtaClick('request_demo', 'esg_brsr_final_cta');
+              }}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-orange-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
             >
               Request Demo

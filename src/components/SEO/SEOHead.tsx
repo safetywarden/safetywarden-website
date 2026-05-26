@@ -18,13 +18,13 @@ export default function SEOHead({
   keywords,
   canonical,
   canonicalUrl,
-  ogImage,
+  ogImage = 'https://www.safetywarden.com/images/optimized/hero-dashboard-1200.webp',
   ogType = 'website',
   noIndex = false,
   structuredData
 }: SEOHeadProps) {
   useEffect(() => {
-    const currentCanonical = canonical ?? canonicalUrl ?? `https://safetywarden.com${window.location.pathname}`;
+    const currentCanonical = canonical ?? canonicalUrl ?? `https://www.safetywarden.com${window.location.pathname}`;
     document.title = title;
 
     const setMeta = (selector: string, attr: 'name' | 'property', key: string, content: string) => {
@@ -45,13 +45,11 @@ export default function SEOHead({
     setMeta('meta[property="og:description"]', 'property', 'og:description', description);
     setMeta('meta[property="og:type"]', 'property', 'og:type', ogType);
     setMeta('meta[property="og:url"]', 'property', 'og:url', currentCanonical);
+    setMeta('meta[property="og:image"]', 'property', 'og:image', ogImage);
+    setMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
     setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', title);
     setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
-
-    if (ogImage) {
-      setMeta('meta[property="og:image"]', 'property', 'og:image', ogImage);
-      setMeta('meta[name="twitter:image"]', 'name', 'twitter:image', ogImage);
-    }
+    setMeta('meta[name="twitter:image"]', 'name', 'twitter:image', ogImage);
 
     let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (!link) {

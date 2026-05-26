@@ -1,45 +1,29 @@
-# SafetyWarden.com Robots.txt
+# SafetyWarden robots.txt
 
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://safetywarden.com/sitemap.xml
+# Keep enterprise marketing and trust pages indexable.
+Allow: /features
+Allow: /solutions
+Allow: /industries
+Allow: /resources
+Allow: /esg-brsr
+Allow: /fire-safety
+Allow: /about
+Allow: /contact
+Allow: /privacy
+Allow: /terms
+Allow: /cookies
+Allow: /company
+Allow: /security
 
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
-
-# Disallow admin and private areas
+# Block private, administrative, authentication and serverless areas.
+Disallow: /admin/
 Disallow: /app/
-Disallow: /admin/
+Disallow: /app/auth/
 Disallow: /api/
-Disallow: /_redirects
-Disallow: /*.json$
+Disallow: /marketplace/admin/
+Disallow: /training/admin/
 
-# Allow important pages
-Allow: /solutions/
-Allow: /training/
-Allow: /marketplace/
-Allow: /manpower/
-Allow: /industries/
-Allow: /pricing/
-Allow: /resources/
-Allow: /about/
-Allow: /contact/
-
-# Block common bot traps
-Disallow: /wp-admin/
-Disallow: /wp-content/
-Disallow: /admin/
-Disallow: /login/
-Disallow: /register/
-
-# Allow social media crawlers
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
+Sitemap: https://www.safetywarden.com/sitemap.xml

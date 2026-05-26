@@ -1,4 +1,5 @@
 // Google Analytics and tracking utilities
+import { track as trackVercelEvent } from '@vercel/analytics';
 
 declare global {
   interface Window {
@@ -36,6 +37,18 @@ export const trackPageView = (url: string, title: string) => {
 
 // Track events
 export const trackEvent = (action: string, category: string, label?: string, value?: number) => {
+  try {
+    trackVercelEvent(action, {
+      category,
+      label: label || '',
+      value: value ?? 0,
+    });
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      console.warn('Vercel Analytics event failed.', error);
+    }
+  }
+
   if (typeof window !== 'undefined' && GA_TRACKING_ID && window.gtag) {
     window.gtag('event', action, {
       event_category: category,
@@ -59,6 +72,14 @@ export const trackFormSubmission = (formName: string) => {
 export const trackDemoRequest = (source: string) => {
   trackEvent('demo_request', 'lead_generation', source);
   trackConversion('demo_request');
+};
+
+export const trackCtaClick = (ctaName: string, source: string) => {
+  trackEvent('cta_click', 'conversion_cta', `${source}:${ctaName}`);
+};
+
+export const trackMarketingPageVisit = (pageName: string, path: string) => {
+  trackEvent('marketing_page_visit', 'page_engagement', `${pageName}:${path}`);
 };
 
 // Track phone calls

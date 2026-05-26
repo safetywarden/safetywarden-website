@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { GA_TRACKING_ID, initGA, trackPageView } from '../../utils/analytics';
 
 const GoogleAnalytics: React.FC = () => {
   const location = useLocation();
@@ -30,18 +31,16 @@ const GoogleAnalytics: React.FC = () => {
     };
 
     return scheduleIdle(() => {
-      import('../../utils/analytics').then(({ GA_TRACKING_ID, initGA }) => {
-        if (document.querySelector(`script[src*="${GA_TRACKING_ID}"]`)) {
-          initGA();
-          return;
-        }
+      if (document.querySelector(`script[src*="${GA_TRACKING_ID}"]`)) {
+        initGA();
+        return;
+      }
 
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
-        script.onload = initGA;
-        document.head.appendChild(script);
-      });
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
+      script.onload = initGA;
+      document.head.appendChild(script);
     });
   }, []);
 
@@ -53,10 +52,8 @@ const GoogleAnalytics: React.FC = () => {
     let idleId: number | null = null;
     const timer = window.setTimeout(() => {
       const track = () => {
-        import('../../utils/analytics').then(({ trackPageView }) => {
-          const url = `https://safetywarden.com${location.pathname}${location.search}`;
-          trackPageView(url, document.title);
-        });
+        const url = `https://safetywarden.com${location.pathname}${location.search}`;
+        trackPageView(url, document.title);
       };
 
       if ('requestIdleCallback' in window) {

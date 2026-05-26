@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { comparisonRows } from './homeData';
+import { trackCtaClick, trackDemoRequest } from '../../utils/analytics';
 
 export function ComparisonSection() {
   return (
@@ -94,6 +95,10 @@ function CTASection() {
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-end">
             <Link
               to="/contact"
+              onClick={() => {
+                trackDemoRequest('home_final_cta');
+                trackCtaClick('request_demo', 'home_final_cta');
+              }}
               className="inline-flex items-center justify-center rounded-full bg-orange-600 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition duration-200 hover:bg-orange-700"
             >
               Request Demo

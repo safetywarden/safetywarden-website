@@ -3,7 +3,7 @@ import { Calendar, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import SEOHead from '../components/SEO/SEOHead';
 import StructuredData from '../components/SEO/StructuredData';
 import { generateLocalBusinessSchema, seoPages } from '../utils/seo';
-import { trackPhoneCall, trackWhatsAppClick } from '../utils/analytics';
+import { trackCtaClick, trackPhoneCall, trackWhatsAppClick } from '../utils/analytics';
 import { emailLink, meetLink, whatsappLink } from '../utils/directOutreach';
 
 const contactCards = [
@@ -14,6 +14,7 @@ const contactCards = [
     cta: 'Schedule Google Meet',
     icon: Calendar,
     tone: 'border-orange-200 bg-orange-50 text-orange-700',
+    eventName: 'schedule_google_meet',
   },
   {
     title: 'Speak Directly',
@@ -23,6 +24,7 @@ const contactCards = [
     icon: MessageCircle,
     tone: 'border-emerald-200 bg-emerald-50 text-emerald-700',
     onClick: trackWhatsAppClick,
+    eventName: 'whatsapp_click',
   },
   {
     title: 'Email SafetyWarden',
@@ -31,6 +33,7 @@ const contactCards = [
     cta: 'Email hello@safetywarden.com',
     icon: Mail,
     tone: 'border-blue-200 bg-blue-50 text-blue-700',
+    eventName: 'email_safetywarden',
   },
 ];
 
@@ -41,7 +44,7 @@ const Contact: React.FC = () => {
         title={seoPages.contact.title}
         description={seoPages.contact.description}
         keywords={seoPages.contact.keywords}
-        canonicalUrl="https://safetywarden.com/contact"
+        canonicalUrl="https://www.safetywarden.com/contact"
       />
 
       <StructuredData data={generateLocalBusinessSchema()} />
@@ -79,7 +82,10 @@ const Contact: React.FC = () => {
                   <p className="text-slate-600 mb-7 leading-relaxed">{card.description}</p>
                   <a
                     href={card.href}
-                    onClick={card.onClick}
+                    onClick={() => {
+                      trackCtaClick(card.eventName, 'contact_page');
+                      card.onClick?.();
+                    }}
                     target={card.href.startsWith('https://') ? '_blank' : undefined}
                     rel={card.href.startsWith('https://') ? 'noopener noreferrer' : undefined}
                     className="mt-auto inline-flex w-full items-center justify-center bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-600"
@@ -123,6 +129,7 @@ const Contact: React.FC = () => {
                     href={emailLink}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackCtaClick('email_safetywarden', 'contact_details')}
                     className="text-slate-700 hover:text-orange-700"
                   >
                     hello@safetywarden.com

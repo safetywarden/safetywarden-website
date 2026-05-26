@@ -1,5 +1,7 @@
 import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import SEOHead from '../components/SEO/SEOHead';
+import StructuredData from '../components/SEO/StructuredData';
+import { generateOrganizationSchema, generateSoftwareApplicationSchema, seoPages } from '../utils/seo';
 import HeroSection from './home/HeroSection';
 
 const ProblemSection = lazy(() => import('./home/ProblemSection'));
@@ -38,10 +40,12 @@ const Home: React.FC = () => {
   return (
     <div className="bg-slate-50 text-slate-900">
       <SEOHead
-        title="SafetyWarden | Enterprise Compliance Operations Platform"
-        description="SafetyWarden helps industries and infrastructure organizations digitize inspections, audits, CAPA, ESG and compliance operations to stay inspection-ready by design."
-        canonicalUrl="https://safetywarden.com"
+        title={seoPages.home.title}
+        description={seoPages.home.description}
+        keywords={seoPages.home.keywords}
+        canonicalUrl="https://www.safetywarden.com/"
       />
+      <StructuredData data={[generateOrganizationSchema(), generateSoftwareApplicationSchema()]} />
 
       <HeroSection />
 

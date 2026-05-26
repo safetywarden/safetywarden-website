@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, Mail, MessageCircle, X } from 'lucide-react';
-import { trackDemoRequest, trackWhatsAppClick } from '../utils/analytics';
+import { trackCtaClick, trackDemoRequest, trackWhatsAppClick } from '../utils/analytics';
 import { emailLink, meetLink, whatsappLink } from '../utils/directOutreach';
 
 interface DemoModalProps {
@@ -30,6 +30,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
             href={meetLink}
             onClick={() => {
               trackDemoRequest('modal_direct_outreach');
+              trackCtaClick('schedule_google_meet', 'demo_modal');
             }}
             target="_blank"
             rel="noopener noreferrer"
@@ -41,7 +42,10 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
           <a
             href={whatsappLink}
-            onClick={trackWhatsAppClick}
+            onClick={() => {
+              trackCtaClick('whatsapp_click', 'demo_modal');
+              trackWhatsAppClick();
+            }}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 rounded-lg border border-slate-200 px-4 py-3 font-semibold text-slate-900 transition-colors hover:border-emerald-300 hover:bg-emerald-50"
@@ -52,6 +56,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
           <a
             href={emailLink}
+            onClick={() => trackCtaClick('email_safetywarden', 'demo_modal')}
             className="flex items-center gap-3 rounded-lg border border-slate-200 px-4 py-3 font-semibold text-slate-900 transition-colors hover:border-blue-300 hover:bg-blue-50"
           >
             <Mail className="h-5 w-5 text-blue-600" />

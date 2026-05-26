@@ -1,7 +1,10 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import GoogleAnalytics from './components/SEO/GoogleAnalytics';
 import PublicLayout from './components/Layout/PublicLayout';
+import { trackMarketingPageVisit } from './utils/analytics';
 
 const Home = lazy(() => import('./pages/Home'));
 const Solutions = lazy(() => import('./pages/Solutions'));
@@ -13,6 +16,14 @@ const Contact = lazy(() => import('./pages/Contact'));
 const About = lazy(() => import('./pages/About'));
 const Features = lazy(() => import('./pages/Features'));
 const EducationAudit = lazy(() => import('./pages/EducationAudit'));
+const FireSafety = lazy(() => import('./pages/FireSafety'));
+const WorkflowsHub = lazy(() => import('./pages/workflows/WorkflowsHub'));
+const WorkflowDetailPage = lazy(() => import('./pages/workflows/WorkflowDetailPage'));
+const Privacy = lazy(() => import('./pages/legal/Privacy'));
+const Terms = lazy(() => import('./pages/legal/Terms'));
+const Cookies = lazy(() => import('./pages/legal/Cookies'));
+const Company = lazy(() => import('./pages/legal/Company'));
+const Security = lazy(() => import('./pages/legal/Security'));
 
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
@@ -90,37 +101,33 @@ function AuditApp() {
   );
 }
 
-function DeferredPageTracker() {
-  const [Tracker, setTracker] = useState<React.ComponentType | null>(null);
+function MarketingEventTracker() {
   const location = useLocation();
 
   useEffect(() => {
-    if (import.meta.env.VITE_ENABLE_SUPABASE_ANALYTICS !== 'true') {
-      return;
+    if (location.pathname === '/esg-brsr' || location.pathname === '/resources') {
+      trackMarketingPageVisit('esg_brsr', location.pathname);
     }
 
-    if (location.pathname === '/') {
-      return;
+    if (location.pathname === '/workflows') {
+      trackMarketingPageVisit('workflow_hub', location.pathname);
     }
 
-    const loadTracker = () => {
-      import('./components/PageTracker').then((module) => {
-        setTracker(() => module.default);
-      });
-    };
-
-    const timer = window.setTimeout(loadTracker, 30000);
-    return () => window.clearTimeout(timer);
+    if (location.pathname.startsWith('/workflows/')) {
+      trackMarketingPageVisit('workflow_detail', location.pathname);
+    }
   }, [location.pathname]);
 
-  return Tracker ? <Tracker /> : null;
+  return null;
 }
 
 function App() {
   return (
     <Router>
       <GoogleAnalytics />
-      <DeferredPageTracker />
+      <VercelAnalytics />
+      <SpeedInsights />
+      <MarketingEventTracker />
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<MarketingPage><Home /></MarketingPage>} />
@@ -132,7 +139,16 @@ function App() {
           <Route path="/about" element={<MarketingPage><About /></MarketingPage>} />
           <Route path="/features" element={<MarketingPage><Features /></MarketingPage>} />
           <Route path="/contact" element={<MarketingPage><Contact /></MarketingPage>} />
+          <Route path="/esg-brsr" element={<MarketingPage><Resources /></MarketingPage>} />
+          <Route path="/fire-safety" element={<MarketingPage><FireSafety /></MarketingPage>} />
+          <Route path="/workflows" element={<MarketingPage><WorkflowsHub /></MarketingPage>} />
+          <Route path="/workflows/:workflowKey" element={<MarketingPage><WorkflowDetailPage /></MarketingPage>} />
           <Route path="/education-audit" element={<MarketingPage><EducationAudit /></MarketingPage>} />
+          <Route path="/privacy" element={<MarketingPage><Privacy /></MarketingPage>} />
+          <Route path="/terms" element={<MarketingPage><Terms /></MarketingPage>} />
+          <Route path="/cookies" element={<MarketingPage><Cookies /></MarketingPage>} />
+          <Route path="/company" element={<MarketingPage><Company /></MarketingPage>} />
+          <Route path="/security" element={<MarketingPage><Security /></MarketingPage>} />
 
           <Route path="/blog" element={<MarketingPage><Blog /></MarketingPage>} />
           <Route path="/blog/:slug" element={<MarketingPage><BlogPost /></MarketingPage>} />

@@ -24,7 +24,7 @@ const Industries: React.FC = () => {
         title={seoPages.industries.title}
         description={seoPages.industries.description}
         keywords={seoPages.industries.keywords}
-        canonicalUrl="https://safetywarden.com/industries"
+        canonicalUrl="https://www.safetywarden.com/industries"
       />
       
       {/* Header */}

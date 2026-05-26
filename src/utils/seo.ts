@@ -3,12 +3,12 @@
 export const generateOrganizationSchema = () => ({
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "SafetyWarden.com",
+  "name": "SafetyWarden",
   "alternateName": "Safety Warden",
-  "description": "Fire safety training and compliance platform for enterprises across India and GCC",
-  "url": "https://safetywarden.com",
-  "logo": "https://safetywarden.com/hori%20logo%20wh.png",
-  "image": "https://safetywarden.com/og-image.png",
+  "description": "Enterprise compliance, audit governance and ESG/BRSR readiness platform for industrial and infrastructure operations.",
+  "url": "https://www.safetywarden.com",
+  "logo": "https://www.safetywarden.com/icon.png",
+  "image": "https://www.safetywarden.com/images/optimized/hero-dashboard-1200.webp",
   "foundingDate": "2023",
   "founders": [
     {
@@ -25,7 +25,7 @@ export const generateOrganizationSchema = () => ({
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": "+91-83413-39444",
-    "contactType": "customer service",
+    "contactType": "business inquiries",
     "email": "hello@safetywarden.com",
     "availableLanguage": ["English", "Hindi"],
     "hoursAvailable": {
@@ -98,23 +98,42 @@ export const generateOrganizationSchema = () => ({
   },
   "parentOrganization": {
     "@type": "Organization",
-    "name": "Bconz International Pvt Ltd"
+    "name": "BCONZ International OPC Private Limited"
+  }
+});
+
+export const generateSoftwareApplicationSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SafetyWarden",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "url": "https://www.safetywarden.com",
+  "description": "Enterprise compliance management software for audit digitization, inspection readiness, CAPA governance and ESG/BRSR workflows.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "BCONZ International OPC Private Limited",
+    "url": "https://www.safetywarden.com"
+  },
+  "offers": {
+    "@type": "Offer",
+    "description": "Enterprise demo and pilot discussions available on request."
   }
 });
 
 export const generateWebsiteSchema = () => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "SafetyWarden.com",
-  "url": "https://safetywarden.com",
-  "description": "Complete fire & life safety compliance platform for enterprises across India & GCC",
+  "name": "SafetyWarden",
+  "url": "https://www.safetywarden.com",
+  "description": "Enterprise compliance, audit governance and ESG/BRSR readiness platform for industrial and infrastructure operations.",
   "publisher": {
     "@type": "Organization",
-    "name": "SafetyWarden.com"
+    "name": "SafetyWarden"
   },
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://safetywarden.com/search?q={search_term_string}",
+    "target": "https://www.safetywarden.com/search?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 });
@@ -246,7 +265,7 @@ export const generateLocalBusinessSchema = () => ({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "SafetyWarden.com",
-  "image": "https://safetywarden.com/hori%20logo%20wh.png",
+  "image": "https://www.safetywarden.com/icon.png",
   "telephone": "+91-83413-39444",
   "email": "hello@safetywarden.com",
   "address": {
@@ -262,7 +281,7 @@ export const generateLocalBusinessSchema = () => ({
     "latitude": 12.9716,
     "longitude": 77.5946
   },
-  "url": "https://safetywarden.com",
+  "url": "https://www.safetywarden.com",
   "openingHours": "Mo-Fr 09:00-18:00",
   "priceRange": "₹₹₹",
   "servedCuisine": "Safety Training and Compliance Services"
@@ -274,7 +293,7 @@ export const generateHowToSchema = (title: string, steps: Array<{ name: string; 
   "@type": "HowTo",
   "name": title,
   "description": `Step-by-step guide: ${title}`,
-  "image": "https://safetywarden.com/og-image.png",
+  "image": "https://www.safetywarden.com/images/optimized/hero-dashboard-1200.webp",
   "totalTime": "PT30M",
   "estimatedCost": {
     "@type": "MonetaryAmount",
@@ -298,7 +317,7 @@ export const generateHowToSchema = (title: string, steps: Array<{ name: string; 
     "position": index + 1,
     "name": step.name,
     "text": step.text,
-    "url": `https://safetywarden.com/resources#step-${index + 1}`
+    "url": `https://www.safetywarden.com/resources#step-${index + 1}`
   }))
 });
 
@@ -355,6 +374,39 @@ export const seoPages = {
     keywords: 'ESG governance software, BRSR reporting platform, sustainability compliance platform, ESG audit software, BRSR readiness, sustainability governance system, ESG evidence management, enterprise ESG reporting'
   }
 };
+
+Object.assign(seoPages, {
+  home: {
+    title: 'SafetyWarden | Enterprise Compliance & Audit Governance Platform',
+    description: 'SafetyWarden helps industries and infrastructure establishments become compliance-ready by design through audit digitization, ESG/BRSR governance, inspection workflows and operational compliance systems.',
+    keywords: 'compliance management software, audit management platform, inspection readiness, ESG software India, BRSR compliance platform, EHS governance platform'
+  },
+  solutions: {
+    title: 'Audit Digitization & Compliance Management Software | SafetyWarden',
+    description: 'Digitize inspections, audits, evidence capture, CAPA workflows and operational compliance governance across industrial and infrastructure sites.',
+    keywords: 'audit digitization platform, compliance management software, industrial inspection software, CAPA management platform, audit evidence management, EHS governance platform'
+  },
+  industries: {
+    title: 'Industrial Compliance Software for Multi-Site Operations | SafetyWarden',
+    description: 'Compliance governance workflows for manufacturing, infrastructure, utilities, engineering and industrial operations that need inspection readiness and audit traceability.',
+    keywords: 'industrial compliance software, manufacturing audit software, infrastructure compliance platform, multi-site audit management, safety governance system'
+  },
+  about: {
+    title: 'About SafetyWarden | Compliance Governance Platform',
+    description: 'SafetyWarden is a compliance governance and audit digitization platform developed by BCONZ International OPC Private Limited, Bengaluru, India.',
+    keywords: 'operational compliance governance, audit workflow software, evidence traceability, CAPA governance, regulatory intelligence platform, ESG BRSR governance, industrial compliance software, SafetyWarden'
+  },
+  contact: {
+    title: 'Schedule a Compliance Demo | SafetyWarden',
+    description: 'Discuss audit digitization, ESG/BRSR governance and inspection readiness workflows with the SafetyWarden team.',
+    keywords: 'schedule compliance demo, audit digitization demo, ESG BRSR demo, inspection readiness consultation, compliance software pilot'
+  },
+  resources: {
+    title: 'ESG & BRSR Governance Platform | SafetyWarden',
+    description: 'Digitize ESG and BRSR governance workflows with SafetyWarden’s enterprise-ready compliance, audit and sustainability reporting platform.',
+    keywords: 'BRSR reporting, ESG governance, sustainability audits, ESG compliance India, ESG governance software, BRSR compliance platform'
+  }
+});
 
 export const generatePageSEO = (pageKey: keyof typeof seoPages, customData?: Partial<SEOHeadProps>) => {
   const pageData = seoPages[pageKey];

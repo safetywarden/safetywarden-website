@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { trackWhatsAppClick } from '../utils/analytics';
+import { trackCtaClick, trackWhatsAppClick } from '../utils/analytics';
 
 const WhatsAppFloat: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleWhatsAppClick = () => {
+    trackCtaClick('whatsapp_click', 'floating_button');
     trackWhatsAppClick();
     window.open('https://wa.me/918341339444?text=Hi, I want to learn more about SafetyWarden.com', '_blank');
   };

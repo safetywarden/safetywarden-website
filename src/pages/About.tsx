@@ -82,7 +82,7 @@ const About: React.FC = () => {
         title={seoPages.about.title}
         description={seoPages.about.description}
         keywords={seoPages.about.keywords}
-        canonicalUrl="https://safetywarden.com/about"
+        canonicalUrl="https://www.safetywarden.com/about"
       />
 
       <section className="bg-slate-950 text-white">

@@ -1,5 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { trackCtaClick, trackDemoRequest, trackEvent } from '../../utils/analytics';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,15 +20,13 @@ const Header: React.FC = () => {
   };
 
   const handleLoginClick = () => {
-    import('../../utils/analytics').then(({ trackEvent }) => {
-      trackEvent('login_click', 'engagement', 'header');
-    });
+    trackEvent('login_click', 'engagement', 'header');
+    trackCtaClick('app_login', 'header');
   };
 
   const handleDemoClick = () => {
-    import('../../utils/analytics').then(({ trackDemoRequest }) => {
-      trackDemoRequest('header');
-    });
+    trackDemoRequest('header');
+    trackCtaClick('request_demo', 'header');
   };
 
   return (
@@ -129,7 +128,10 @@ const Header: React.FC = () => {
               </a>
               <Link
                 to="/contact"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  handleDemoClick();
+                  setIsMenuOpen(false);
+                }}
                 className="block rounded-xl bg-orange-600 px-4 py-3 text-sm font-semibold text-white text-center hover:bg-orange-700"
               >
                 Request Demo

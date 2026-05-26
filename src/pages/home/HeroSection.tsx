@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { trackCtaClick, trackDemoRequest } from '../../utils/analytics';
 
 function HeroSection() {
   return (
@@ -20,6 +21,10 @@ function HeroSection() {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link
                 to="/contact"
+                onClick={() => {
+                  trackDemoRequest('home_hero');
+                  trackCtaClick('request_demo', 'home_hero');
+                }}
                 className="inline-flex w-full items-center justify-center rounded-full bg-orange-600 px-10 py-4 text-base font-semibold text-white shadow-sm sw-elev transition duration-200 hover:bg-orange-700 sm:w-auto"
               >
                 Request Demo

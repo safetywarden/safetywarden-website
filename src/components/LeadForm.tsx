@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, Mail, MessageCircle } from 'lucide-react';
-import { trackDemoRequest, trackFormSubmission, trackWhatsAppClick } from '../utils/analytics';
+import { trackCtaClick, trackDemoRequest, trackFormSubmission, trackWhatsAppClick } from '../utils/analytics';
 import { emailLink, meetLink, whatsappLink } from '../utils/directOutreach';
 
 interface LeadFormProps {
@@ -16,10 +16,12 @@ const LeadForm: React.FC<LeadFormProps> = ({
 }) => {
   const handleMeetClick = () => {
     trackDemoRequest('direct_outreach');
+    trackCtaClick('schedule_google_meet', 'lead_form');
   };
 
   const handleEmailClick = () => {
     trackFormSubmission('direct_email');
+    trackCtaClick('email_safetywarden', 'lead_form');
   };
 
   return (
@@ -45,7 +47,10 @@ const LeadForm: React.FC<LeadFormProps> = ({
 
         <a
           href={whatsappLink}
-          onClick={trackWhatsAppClick}
+          onClick={() => {
+            trackCtaClick('whatsapp_click', 'lead_form');
+            trackWhatsAppClick();
+          }}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3 text-slate-900 transition-colors hover:border-emerald-300 hover:bg-emerald-50"

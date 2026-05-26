@@ -32,7 +32,7 @@ const Solutions: React.FC = () => {
         title={seoPages.solutions.title}
         description={seoPages.solutions.description}
         keywords={seoPages.solutions.keywords}
-        canonicalUrl="https://safetywarden.com/solutions"
+        canonicalUrl="https://www.safetywarden.com/solutions"
       />
       
       <StructuredData data={servicesSchema} />
