@@ -358,6 +358,11 @@ export const seoPages = {
     description: 'Discuss SafetyWarden pilot deployments, operational rollouts and enterprise governance deployments for audit digitization, inspections and ESG/BRSR workflows.',
     keywords: 'enterprise compliance deployment, audit governance platform, ESG BRSR workflow deployment, compliance operations platform, industrial inspection governance'
   },
+  careers: {
+    title: 'Careers & Professional Collaboration | SafetyWarden',
+    description: 'Join SafetyWarden’s growing network of auditors, ESG professionals and operational compliance experts supporting enterprise governance and inspection-readiness workflows.',
+    keywords: 'compliance careers, auditor collaboration, ESG professionals, BRSR consultants, safety auditors, compliance consultants, inspection readiness experts'
+  },
   about: {
     title: 'About SafetyWarden - Operational Compliance Governance Platform',
     description: 'SafetyWarden helps industrial and infrastructure organizations digitize audits, inspections, evidence, CAPA and ESG/BRSR governance into one operational compliance platform.',
