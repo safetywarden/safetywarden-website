@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import SEOHead from '../components/SEO/SEOHead';
 import { trackCtaClick, trackWhatsAppClick } from '../utils/analytics';
-import { meetLink, whatsappLink } from '../utils/directOutreach';
+import { collaborationEmailLink, meetLink, whatsappLink } from '../utils/directOutreach';
 import { seoPages } from '../utils/seo';
 
 const roleGroups = [
@@ -87,9 +87,6 @@ const backgrounds = [
   'Regulatory audits'
 ];
 
-const emailHref =
-  'mailto:hello@safetywarden.com?subject=SafetyWarden%20Professional%20Collaboration%20Interest';
-
 const Careers: React.FC = () => {
   return (
     <div className="bg-white">
@@ -116,7 +113,9 @@ const Careers: React.FC = () => {
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
-                href={emailHref}
+                href={collaborationEmailLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => trackCtaClick('careers_express_interest', 'careers_hero')}
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-orange-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-950/30 transition hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400"
               >
@@ -278,7 +277,9 @@ const Careers: React.FC = () => {
               WhatsApp Discussion
             </a>
             <a
-              href={emailHref}
+              href={collaborationEmailLink}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => trackCtaClick('careers_email_safetywarden', 'careers_contact')}
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
