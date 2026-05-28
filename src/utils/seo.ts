@@ -354,9 +354,9 @@ export const seoPages = {
     keywords: 'industry safety solutions, IT park fire safety, hospital safety compliance, manufacturing safety, warehouse safety, retail mall safety'
   },
   pricing: {
-    title: 'Safety Compliance Pricing - Transparent Plans for Every Organization',
-    description: 'Simple, transparent pricing for safety compliance solutions. Plans starting from ₹9,900/month with training packs and outsourcing options.',
-    keywords: 'safety compliance pricing, fire safety training cost, safety audit pricing, compliance software pricing, safety training packages'
+    title: 'Enterprise Compliance Deployment Models | SafetyWarden',
+    description: 'Discuss SafetyWarden pilot deployments, operational rollouts and enterprise governance deployments for audit digitization, inspections and ESG/BRSR workflows.',
+    keywords: 'enterprise compliance deployment, audit governance platform, ESG BRSR workflow deployment, compliance operations platform, industrial inspection governance'
   },
   about: {
     title: 'About SafetyWarden - Operational Compliance Governance Platform',
